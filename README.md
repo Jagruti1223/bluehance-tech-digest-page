@@ -16,3 +16,9 @@ of search results. The link is for the team, not for the web.
 
 Nothing here is a source of truth. The pipeline lives in `digest/` in the
 private repository.
+
+## When it updates
+
+Every weekday at roughly 10:30 AM IST. `index.html` carries its own date in
+the page title, so if that date is not today's, the pipeline failed rather
+than the news being quiet - check the Actions tab of the private repository.
