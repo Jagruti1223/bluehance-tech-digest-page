@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Tech Update - 22 Sep 2026</title>
+<meta name="description" content="Daily AI, developer tooling and Wix platform updates for the Bluehance 360 engineering team.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --paper:      #f7f8fa;
+  --surface:    #ffffff;
+  --surface-2:  #eef1f5;
+  --ink:        #10161d;
+  --ink-soft:   #47535f;
+  --muted:      #6b7785;
+  --rule:       #dde3ea;
+  --accent:     #1f5c9e;
+  --accent-lit: #6fa8dc;
+  --flag:       #b4531f;
+  --wix:        #1f5c9e;
+  --ai:         #4a6f8a;
+  --dev:        #5a7d5a;
+  --shadow:     0 1px 2px rgba(16,22,29,.06), 0 8px 24px -16px rgba(16,22,29,.28);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:      #0d1218;
+    --surface:    #141b23;
+    --surface-2:  #1c242e;
+    --ink:        #e8edf3;
+    --ink-soft:   #b3bfcb;
+    --muted:      #8593a1;
+    --rule:       #26313d;
+    --accent:     #7fb2e5;
+    --accent-lit: #a8cdf0;
+    --flag:       #e08a52;
+    --wix:        #7fb2e5;
+    --ai:         #93b4cc;
+    --dev:        #93b893;
+    --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"] {
+  --paper:      #0d1218;
+  --surface:    #141b23;
+  --surface-2:  #1c242e;
+  --ink:        #e8edf3;
+  --ink-soft:   #b3bfcb;
+  --muted:      #8593a1;
+  --rule:       #26313d;
+  --accent:     #7fb2e5;
+  --accent-lit: #a8cdf0;
+  --flag:       #e08a52;
+  --wix:        #7fb2e5;
+  --ai:         #93b4cc;
+  --dev:        #93b893;
+  --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 24px 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* --- masthead --- */
+.masthead { display: flex; flex-direction: column; gap: 10px; }
+
+.eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+h1 {
+  font-family: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.dateline {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 15px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+/* --- controls --- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.chip {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background .12s ease, color .12s ease, border-color .12s ease;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--surface);
+}
+:root[data-theme="dark"] .chip[aria-pressed="true"],
+:root:not([data-theme="light"]) .chip[aria-pressed="true"] { color: #0d1218; }
+
+.chip .n {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  opacity: .7;
+  margin-left: 5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.search {
+  flex: 1 1 200px;
+  min-width: 180px;
+  margin-left: auto;
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  color: var(--ink);
+}
+.search::placeholder { color: var(--muted); }
+.search:focus-visible, .chip:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --- table --- */
+.table-scroll { overflow-x: auto; }
+
+table { width: 100%; border-collapse: collapse; }
+
+thead th {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  text-align: left;
+  padding: 0 14px 10px;
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--rule);
+  transition: background .12s ease;
+}
+tbody tr:hover { background: var(--surface); }
+
+tbody td { padding: 16px 14px; vertical-align: top; }
+
+/* Section identity lives in a left stripe rather than another badge column. */
+td.topic { border-left: 3px solid transparent; }
+tr[data-section="wix"] td.topic { border-left-color: var(--wix); }
+tr[data-section="ai"]  td.topic { border-left-color: var(--ai); }
+tr[data-section="dev"] td.topic { border-left-color: var(--dev); }
+
+.title {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.32;
+  letter-spacing: -.005em;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-block;
+}
+.title:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+.summary {
+  margin: 5px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+.flag {
+  display: inline-block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--flag);
+  border: 1px solid var(--flag);
+  border-radius: 3px;
+  padding: 1px 5px;
+  margin-right: 7px;
+  vertical-align: 2px;
+}
+
+td.meta { white-space: nowrap; }
+
+.source {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.section-tag {
+  display: block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+td.date {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.empty {
+  display: none;
+  padding: 40px 14px;
+  text-align: center;
+  color: var(--muted);
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 14px;
+}
+.empty.show { display: block; }
+
+footer {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: .04em;
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+}
+
+/* Stack the table into cards on narrow screens rather than scrolling it. */
+@media (max-width: 640px) {
+  .wrap { padding: 28px 16px 56px; }
+  thead { display: none; }
+  tbody tr { display: block; padding: 4px 0 10px; }
+  tbody td { display: block; padding: 4px 14px; }
+  td.topic { padding-top: 12px; }
+  td.meta, td.date { padding-top: 0; }
+  td.date { padding-bottom: 12px; }
+  .section-tag { display: inline; margin-left: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="eyebrow">Bluehance 360 &middot; Engineering</div>
+    <h1>Daily Tech Update</h1>
+    <div class="dateline">Tuesday, 22 September 2026</div>
+    <a class="archive-link" style="font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6b7785;text-decoration:none;border-bottom:1px solid #dde3ea;align-self:flex-start;padding-bottom:2px" href="https://jagruti1223.github.io/bluehance-tech-digest-page/archive/">Previous days</a>
+  </header>
+
+  <div class="controls">
+    <div class="chips">
+      <button class="chip" data-filter="all" aria-pressed="true">All<span class="n">4</span></button><button class="chip" data-filter="ai" aria-pressed="false">AI &amp; Models<span class="n">1</span></button><button class="chip" data-filter="dev" aria-pressed="false">Dev Tools<span class="n">3</span></button>
+    </div>
+    <input id="search" class="search" type="search" placeholder="Search titles, sources, summaries"
+           autocomplete="off" aria-label="Search updates">
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Topic</th>
+          <th scope="col">Source</th>
+          <th scope="col">Published</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr data-section="ai" data-haystack="laya : bye bye typescript jev ai convai innovations released laya, an open source non-autoregressive model built for structured decision tasks like ticket routing, urgency scoring and churn-risk estimation without generating and parsing free text the way an llm-based agent would, giving a lighter weight option for that class of automation. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://medium.com/data-science-in-your-pocket/laya-bye-bye-typescript-jev-ai-bdefd25149e0" target="_blank" rel="noopener noreferrer">Laya : Bye Bye TypeScript Jev AI</a>
+          <p class="summary">Convai Innovations released Laya, an open source non-autoregressive model built for structured decision tasks like ticket routing, urgency scoring and churn-risk estimation without generating and parsing free text the way an LLM-based agent would, giving a lighter weight option for that class of automation.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">22 Sep</td>
+      </tr>
+      <tr data-section="dev" data-haystack="replace docker access tokens in github actions with an oidc connection â€” nick janetakis a step-by-step guide shows how to swap long-lived docker hub access tokens in github actions workflows for short-lived oidc-based authentication, removing a class of leaked-credential risk from ci pipelines that push images. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://nickjanetakis.com/blog/replace-docker-access-tokens-in-github-actions-with-an-oidc-connection" target="_blank" rel="noopener noreferrer">Replace Docker Access Tokens in GitHub Actions with an OIDC Connection â€” Nick Janetakis</a>
+          <p class="summary">A step-by-step guide shows how to swap long-lived Docker Hub access tokens in GitHub Actions workflows for short-lived OIDC-based authentication, removing a class of leaked-credential risk from CI pipelines that push images.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">22 Sep</td>
+      </tr>
+      <tr data-section="dev" data-haystack="deprecation notice: all-platform codeql bundle starting with codeql cli 2.27.0 the combined all-platform bundle is deprecated and github will remove it entirely by mid-march 2027, so any ci pipeline still pulling the universal tarball needs to switch to fetching the platform-specific bundle for its os and architecture before then. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://github.blog/changelog/2026-09-22-deprecation-notice-all-platform-codeql-bundle" target="_blank" rel="noopener noreferrer">Deprecation notice: All-platform CodeQL bundle</a>
+          <p class="summary">Starting with CodeQL CLI 2.27.0 the combined all-platform bundle is deprecated and GitHub will remove it entirely by mid-March 2027, so any CI pipeline still pulling the universal tarball needs to switch to fetching the platform-specific bundle for its OS and architecture before then.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">22 Sep</td>
+      </tr>
+      <tr data-section="dev" data-haystack="duckdb now ships inside dbt v2 dbt v2, built on its new rust-based fusion engine, now ships a built-in duckdb adapter plus catalog support for ducklake and iceberg rest catalogs, letting teams drop the separate dbt-duckdb python package and get native catalog integration out of the box. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://duckdb.org/2026/09/22/dbt-fusion.html" target="_blank" rel="noopener noreferrer">DuckDB Now Ships inside dbt v2</a>
+          <p class="summary">dbt v2, built on its new Rust-based Fusion engine, now ships a built-in DuckDB adapter plus catalog support for DuckLake and Iceberg REST catalogs, letting teams drop the separate dbt-duckdb Python package and get native catalog integration out of the box.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">22 Sep</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="empty" id="empty">No updates match that filter.</div>
+  </div>
+
+  <footer>
+    <span>4 updates</span>
+    <span>Covering updates since 22 Sep, 10:27 IST</span>
+    <span>Every title links to its original source</span>
+  </footer>
+</div>
+<script>
+(function () {
+  var rows   = Array.prototype.slice.call(document.querySelectorAll('tbody tr'));
+  var chips  = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var search = document.getElementById('search');
+  var empty  = document.getElementById('empty');
+  var active = 'all';
+
+  function apply() {
+    var q = (search.value || '').trim().toLowerCase();
+    var shown = 0;
+    rows.forEach(function (row) {
+      var okSection = active === 'all' || row.dataset.section === active;
+      var okText = !q || row.dataset.haystack.indexOf(q) !== -1;
+      var show = okSection && okText;
+      row.hidden = !show;
+      if (show) shown++;
+    });
+    empty.classList.toggle('show', shown === 0);
+  }
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      active = chip.dataset.filter;
+      chips.forEach(function (c) {
+        c.setAttribute('aria-pressed', String(c === chip));
+      });
+      apply();
+    });
+  });
+
+  search.addEventListener('input', apply);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Tech Update - 24 Sep 2026</title>
+<meta name="description" content="Daily AI, developer tooling and Wix platform updates for the Bluehance 360 engineering team.">
+<!-- The page is served from a public repo so GitHub Pages can host it without a
+     paid plan. The content is public tech news, but it carries the company name,
+     so keep it out of search results: the link is meant for the team, not the web. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --paper:      #f7f8fa;
+  --surface:    #ffffff;
+  --surface-2:  #eef1f5;
+  --ink:        #10161d;
+  --ink-soft:   #47535f;
+  --muted:      #6b7785;
+  --rule:       #dde3ea;
+  --accent:     #1f5c9e;
+  --accent-lit: #6fa8dc;
+  --flag:       #b4531f;
+  --wix:        #1f5c9e;
+  --ai:         #4a6f8a;
+  --dev:        #5a7d5a;
+  --shadow:     0 1px 2px rgba(16,22,29,.06), 0 8px 24px -16px rgba(16,22,29,.28);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:      #0d1218;
+    --surface:    #141b23;
+    --surface-2:  #1c242e;
+    --ink:        #e8edf3;
+    --ink-soft:   #b3bfcb;
+    --muted:      #8593a1;
+    --rule:       #26313d;
+    --accent:     #7fb2e5;
+    --accent-lit: #a8cdf0;
+    --flag:       #e08a52;
+    --wix:        #7fb2e5;
+    --ai:         #93b4cc;
+    --dev:        #93b893;
+    --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"] {
+  --paper:      #0d1218;
+  --surface:    #141b23;
+  --surface-2:  #1c242e;
+  --ink:        #e8edf3;
+  --ink-soft:   #b3bfcb;
+  --muted:      #8593a1;
+  --rule:       #26313d;
+  --accent:     #7fb2e5;
+  --accent-lit: #a8cdf0;
+  --flag:       #e08a52;
+  --wix:        #7fb2e5;
+  --ai:         #93b4cc;
+  --dev:        #93b893;
+  --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 24px 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* --- masthead --- */
+.masthead { display: flex; flex-direction: column; gap: 10px; }
+
+.eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+h1 {
+  font-family: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.dateline {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 15px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+/* --- controls --- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.chip {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background .12s ease, color .12s ease, border-color .12s ease;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--surface);
+}
+:root[data-theme="dark"] .chip[aria-pressed="true"],
+:root:not([data-theme="light"]) .chip[aria-pressed="true"] { color: #0d1218; }
+
+.chip .n {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  opacity: .7;
+  margin-left: 5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.search {
+  flex: 1 1 200px;
+  min-width: 180px;
+  margin-left: auto;
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  color: var(--ink);
+}
+.search::placeholder { color: var(--muted); }
+.search:focus-visible, .chip:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --- table --- */
+.table-scroll { overflow-x: auto; }
+
+table { width: 100%; border-collapse: collapse; }
+
+thead th {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  text-align: left;
+  padding: 0 14px 10px;
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--rule);
+  transition: background .12s ease;
+}
+tbody tr:hover { background: var(--surface); }
+
+tbody td { padding: 16px 14px; vertical-align: top; }
+
+/* Section identity lives in a left stripe rather than another badge column. */
+td.topic { border-left: 3px solid transparent; }
+tr[data-section="wix"] td.topic { border-left-color: var(--wix); }
+tr[data-section="ai"]  td.topic { border-left-color: var(--ai); }
+tr[data-section="dev"] td.topic { border-left-color: var(--dev); }
+
+.title {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.32;
+  letter-spacing: -.005em;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-block;
+}
+.title:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+.summary {
+  margin: 5px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+.flag {
+  display: inline-block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--flag);
+  border: 1px solid var(--flag);
+  border-radius: 3px;
+  padding: 1px 5px;
+  margin-right: 7px;
+  vertical-align: 2px;
+}
+
+td.meta { white-space: nowrap; }
+
+.source {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.section-tag {
+  display: block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+td.date {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.empty {
+  display: none;
+  padding: 40px 14px;
+  text-align: center;
+  color: var(--muted);
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 14px;
+}
+.empty.show { display: block; }
+
+footer {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: .04em;
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+}
+
+/* Stack the table into cards on narrow screens rather than scrolling it. */
+@media (max-width: 640px) {
+  .wrap { padding: 28px 16px 56px; }
+  thead { display: none; }
+  tbody tr { display: block; padding: 4px 0 10px; }
+  tbody td { display: block; padding: 4px 14px; }
+  td.topic { padding-top: 12px; }
+  td.meta, td.date { padding-top: 0; }
+  td.date { padding-bottom: 12px; }
+  .section-tag { display: inline; margin-left: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="eyebrow">Bluehance 360 &middot; Engineering</div>
+    <h1>Daily Tech Update</h1>
+    <div class="dateline">Thursday, 24 September 2026</div>
+    <a class="archive-link" style="font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6b7785;text-decoration:none;border-bottom:1px solid #dde3ea;align-self:flex-start;padding-bottom:2px" href="https://jagruti1223.github.io/bluehance-tech-digest-page/archive/">Previous days</a>
+  </header>
+
+  <div class="controls">
+    <div class="chips">
+      <button class="chip" data-filter="all" aria-pressed="true">All<span class="n">20</span></button><button class="chip" data-filter="ai" aria-pressed="false">AI &amp; Models<span class="n">6</span></button><button class="chip" data-filter="dev" aria-pressed="false">Dev Tools<span class="n">14</span></button>
+    </div>
+    <input id="search" class="search" type="search" placeholder="Search titles, sources, summaries"
+           autocomplete="off" aria-label="Search updates">
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Topic</th>
+          <th scope="col">Source</th>
+          <th scope="col">Published</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr data-section="ai" data-haystack="gemini 3.8 tts playground google shipped two new gemini text-to-speech models with a library of over 2000 voices and the ability to clone a custom voice from just a 30-second sample, worth testing for any client project that needs synthesized narration or ivr voices. simon willison">
+        <td class="topic">
+          <a class="title" href="https://simonwillison.net/2026/Sep/23/gemini-tts-playground/" target="_blank" rel="noopener noreferrer">Gemini 3.8 TTS Playground</a>
+          <p class="summary">Google shipped two new Gemini text-to-speech models with a library of over 2000 voices and the ability to clone a custom voice from just a 30-second sample, worth testing for any client project that needs synthesized narration or IVR voices.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Simon Willison</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">23 Sep</td>
+      </tr>
+      <tr data-section="ai" data-haystack="ringgâ€™s ai agents resolve up to 65% of customer calls with openai ringg&#x27;s multilingual voice, chat and whatsapp customer service agents now run on gpt-5.6 and resolve up to 65 percent of calls automatically at 90 percent lower cost than gpt-4.1, a concrete data point for evaluating a cheaper model swap in support automation. openai">
+        <td class="topic">
+          <a class="title" href="https://openai.com/index/ringg" target="_blank" rel="noopener noreferrer">Ringgâ€™s AI agents resolve up to 65% of customer calls with OpenAI</a>
+          <p class="summary">Ringg&#x27;s multilingual voice, chat and WhatsApp customer service agents now run on GPT-5.6 and resolve up to 65 percent of calls automatically at 90 percent lower cost than GPT-4.1, a concrete data point for evaluating a cheaper model swap in support automation.</p>
+        </td>
+        <td class="meta">
+          <span class="source">OpenAI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">23 Sep</td>
+      </tr>
+      <tr data-section="ai" data-haystack="chatgpt mobile app gets voice-based agentic features chatgpt&#x27;s mobile app now lets pro and plus subscribers complete agentic tasks by voice through a new work tab, extending agent capabilities that previously lived mainly in the desktop and web app. techcrunch ai">
+        <td class="topic">
+          <a class="title" href="https://techcrunch.com/2026/09/23/chatgpt-mobile-app-gets-voice-based-agentic-features/" target="_blank" rel="noopener noreferrer">ChatGPT mobile app gets voice-based agentic features</a>
+          <p class="summary">ChatGPT&#x27;s mobile app now lets Pro and Plus subscribers complete agentic tasks by voice through a new Work tab, extending agent capabilities that previously lived mainly in the desktop and web app.</p>
+        </td>
+        <td class="meta">
+          <span class="source">TechCrunch AI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">23 Sep</td>
+      </tr>
+      <tr data-section="ai" data-haystack="harvey turns legal context into stronger drafts with gpt-6 astra harvey&#x27;s legal-drafting product moved to a model called gpt-6 astra, an early sign that a next-generation openai model beyond gpt-5 is already running in production for structured, context-aware document generation. openai">
+        <td class="topic">
+          <a class="title" href="https://openai.com/index/harvey-from-context-to-confidence-with-astra" target="_blank" rel="noopener noreferrer">Harvey turns legal context into stronger drafts with GPT-6 Astra</a>
+          <p class="summary">Harvey&#x27;s legal-drafting product moved to a model called GPT-6 Astra, an early sign that a next-generation OpenAI model beyond GPT-5 is already running in production for structured, context-aware document generation.</p>
+        </td>
+        <td class="meta">
+          <span class="source">OpenAI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">23 Sep</td>
+      </tr>
+      <tr data-section="ai" data-haystack="introducing mentalhealthbench openai released an expert-built benchmark for scoring how safely and helpfully ai models handle mental-health-related conversations, a useful reference if you are building or evaluating chat features that might touch sensitive topics. openai">
+        <td class="topic">
+          <a class="title" href="https://openai.com/index/introducing-mentalhealthbench" target="_blank" rel="noopener noreferrer">Introducing MentalHealthBench</a>
+          <p class="summary">OpenAI released an expert-built benchmark for scoring how safely and helpfully AI models handle mental-health-related conversations, a useful reference if you are building or evaluating chat features that might touch sensitive topics.</p>
+        </td>
+        <td class="meta">
+          <span class="source">OpenAI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">23 Sep</td>
+      </tr>
+      <tr data-section="ai" data-haystack="claude discovers a novel enzyme system with crispr-like repeats anthropic opened a life-sciences lab and reports claude autonomously discovered a novel enzyme system with crispr-like properties from only high-level human direction, an early signal of how far current models can go on open-ended scientific reasoning. anthropic">
+        <td class="topic">
+          <a class="title" href="https://www.anthropic.com/news/claude-discovers-novel-enzyme-system" target="_blank" rel="noopener noreferrer">Claude discovers a novel enzyme system with CRISPR-like repeats</a>
+          <p class="summary">Anthropic opened a life-sciences lab and reports Claude autonomously discovered a novel enzyme system with CRISPR-like properties from only high-level human direction, an early signal of how far current models can go on open-ended scientific reasoning.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Anthropic</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">23 Sep</td>
+      </tr>
+      <tr data-section="dev" data-haystack="vercel connect now supports tanstack ai vercel connect added a connectmcptransport wrapper so agents built with tanstack ai can call oauth-protected mcp servers without your app having to store or rotate the credentials itself. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://vercel.com/changelog/vercel-connect-tanstack-ai" target="_blank" rel="noopener noreferrer">Vercel Connect now supports TanStack AI</a>
+          <p class="summary">Vercel Connect added a connectMCPTransport wrapper so agents built with TanStack AI can call OAuth-protected MCP servers without your app having to store or rotate the credentials itself.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">24 Sep</td>
+      </tr>
+      <tr data-section="dev" data-haystack="rendering huge pull requests in the github copilot app github rebuilt the diff-rendering engine in the copilot app so it can open million-line pull requests with hundreds of inline review comments without choking, useful if your team reviews large ai-generated diffs. github">
+        <td class="topic">
+          <a class="title" href="https://github.blog/engineering/user-experience/rendering-huge-pull-requests-in-the-github-copilot-app/" target="_blank" rel="noopener noreferrer">Rendering huge pull requests in the GitHub Copilot app</a>
+          <p class="summary">GitHub rebuilt the diff-rendering engine in the Copilot app so it can open million-line pull requests with hundreds of inline review comments without choking, useful if your team reviews large AI-generated diffs.</p>
+        </td>
+        <td class="meta">
+          <span class="source">GitHub</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">23 Sep</td>
+      </tr>
+      <tr data-section="dev" data-haystack="how to improve agent experience (ax) with ci a proposed ci pattern layers deterministic contract tests, checking schemas, exit codes, error codes and idempotency, to catch regressions in apis, clis and mcp tools before they break the ai agents that depend on them. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://circleci.com/blog/improve-agent-experience-with-ci" target="_blank" rel="noopener noreferrer">How to improve agent experience (AX) with CI</a>
+          <p class="summary">A proposed CI pattern layers deterministic contract tests, checking schemas, exit codes, error codes and idempotency, to catch regressions in APIs, CLIs and MCP tools before they break the AI agents that depend on them.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">24 Sep</td>
+      </tr>
+      <tr data-section="dev" data-haystack="use open weight models as your ai coding agent with amazon bedrock a walkthrough shows how to pair the open-source terminal coding agent opencode with open-weight models hosted on amazon bedrock, letting you configure multi-model workflows and keep code data inside your own aws account instead of a third-party api. aws machine learning">
+        <td class="topic">
+          <a class="title" href="https://aws.amazon.com/blogs/machine-learning/use-open-weight-models-as-your-ai-coding-agent-with-amazon-bedrock/" target="_blank" rel="noopener noreferrer">Use open weight models as your AI coding agent with Amazon Bedrock</a>
+          <p class="summary">A walkthrough shows how to pair the open-source terminal coding agent OpenCode with open-weight models hosted on Amazon Bedrock, letting you configure multi-model workflows and keep code data inside your own AWS account instead of a third-party API.</p>
+        </td>
+        <td class="meta">
+          <span class="source">AWS Machine Learning</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">23 Sep</td>
+      </tr>
+      <tr data-section="dev" data-haystack="from portal-hopping to instant answers: hemaâ€™s journey with mcp and amazon bedrock a 100-year-old retailer built an internal assistant on bedrock agentcore using mcp to give staff governed answers inside their existing tools instead of hopping between developer portals, a concrete example of mcp replacing internal documentation search. aws machine learning">
+        <td class="topic">
+          <a class="title" href="https://aws.amazon.com/blogs/machine-learning/from-portal-hopping-to-instant-answers-hemas-journey-with-mcp-and-amazon-bedrock/" target="_blank" rel="noopener noreferrer">From portal-hopping to instant answers: HEMAâ€™s journey with MCP and Amazon Bedrock</a>
+          <p class="summary">A 100-year-old retailer built an internal assistant on Bedrock AgentCore using MCP to give staff governed answers inside their existing tools instead of hopping between developer portals, a concrete example of MCP replacing internal documentation search.</p>
+        </td>
+        <td class="meta">
+          <span class="source">AWS Machine Learning</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">24 Sep</td>
+      </tr>
+      <tr data-section="dev" data-haystack="apple touts simpler and clearer code with swift 6.4 swift 6.4 makes swift build the default build system in swift package manager for consistent builds across linux, macos and windows, brings subprocess to 1.0 for cross-platform process management, and deepens c++20 and webassembly interop. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://www.infoworld.com/article/4225734/apple-touts-simpler-and-clearer-code-with-swift-6-4.html" target="_blank" rel="noopener noreferrer">Apple touts simpler and clearer code with Swift 6.4</a>
+          <p class="summary">Swift 6.4 makes Swift Build the default build system in Swift Package Manager for consistent builds across Linux, macOS and Windows, brings Subprocess to 1.0 for cross-platform process management, and deepens C++20 and WebAssembly interop.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">24 Sep</td>
+      </tr>
+      <tr data-section="dev" data-haystack="in relation to hibernate orm 8.0.0.beta2 adds stronger concurrency guarantees, including improved optimistic version checks and version locking for statelesssession and entityagent, plus better multitenancy isolation and expanded jakarta persistence 4 support, relevant to any java service built on hibernate. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://in.relation.to/2026/09/23/orm-80-beta2" target="_blank" rel="noopener noreferrer">In Relation To</a>
+          <p class="summary">Hibernate ORM 8.0.0.Beta2 adds stronger concurrency guarantees, including improved optimistic version checks and version locking for StatelessSession and EntityAgent, plus better multitenancy isolation and expanded Jakarta Persistence 4 support, relevant to any Java service built on Hibernate.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">24 Sep</td>
+      </tr>
+      <tr data-section="dev" data-haystack="vscode&#x27;s ssh agent is bananas (2025) a deep dive into vs code&#x27;s ssh remote agent explains its internals and tricks, worth reading if your team regularly develops over ssh into remote or client servers. hacker news">
+        <td class="topic">
+          <a class="title" href="https://fly.io/blog/vscode-ssh-wtf/" target="_blank" rel="noopener noreferrer">VSCode&#x27;s SSH Agent Is Bananas (2025)</a>
+          <p class="summary">A deep dive into VS Code&#x27;s SSH remote agent explains its internals and tricks, worth reading if your team regularly develops over SSH into remote or client servers.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Hacker News</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">24 Sep</td>
+      </tr>
+      <tr data-section="dev" data-haystack="shadow roots, explained with live examples an interactive, example-driven explainer walks through how shadow roots work in css and web components, a handy reference if you build encapsulated components for client sites. simon willison">
+        <td class="topic">
+          <a class="title" href="https://simonwillison.net/2026/Sep/23/shadow-roots/" target="_blank" rel="noopener noreferrer">Shadow roots, explained with live examples</a>
+          <p class="summary">An interactive, example-driven explainer walks through how shadow roots work in CSS and web components, a handy reference if you build encapsulated components for client sites.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Simon Willison</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">23 Sep</td>
+      </tr>
+      <tr data-section="dev" data-haystack="agentic conversational video intelligence built on aws a reference build shows a single strands agents sdk agent orchestrating bedrock, rekognition and transcribe at runtime to answer natural-language questions about video content, a reusable pattern for agentic aws pipelines that decide which service to call. aws machine learning">
+        <td class="topic">
+          <a class="title" href="https://aws.amazon.com/blogs/machine-learning/agentic-conversational-video-intelligence-built-on-aws/" target="_blank" rel="noopener noreferrer">Agentic conversational video intelligence built on AWS</a>
+          <p class="summary">A reference build shows a single Strands Agents SDK agent orchestrating Bedrock, Rekognition and Transcribe at runtime to answer natural-language questions about video content, a reusable pattern for agentic AWS pipelines that decide which service to call.</p>
+        </td>
+        <td class="meta">
+          <span class="source">AWS Machine Learning</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">23 Sep</td>
+      </tr>
+      <tr data-section="dev" data-haystack="debian inference portal launches to provide free ai/llm inferencing to debian developers debian contributors now get free access to hosted deepseek v4 flash and glm-5.2 models through a scaleway-funded api, letting you test llm integrations without provisioning your own commercial api keys. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://www.phoronix.com/news/Debian-Inference-Portal" target="_blank" rel="noopener noreferrer">Debian Inference Portal Launches To Provide Free AI/LLM Inferencing To Debian Developers</a>
+          <p class="summary">Debian contributors now get free access to hosted DeepSeek V4 Flash and GLM-5.2 models through a Scaleway-funded API, letting you test LLM integrations without provisioning your own commercial API keys.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">24 Sep</td>
+      </tr>
+      <tr data-section="dev" data-haystack="want to try ubuntuâ€™s ai dictation feature? hereâ€™s how canonical hasn&#x27;t officially shipped its ai dictation feature for ubuntu yet, but the myna-config ppa, myna snap and a choice of speech-to-text models are already installable for anyone who wants to test it early. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://www.omgubuntu.co.uk/2026/09/ubuntu-myna-ai-install" target="_blank" rel="noopener noreferrer">Want to try Ubuntuâ€™s AI dictation feature? Hereâ€™s how</a>
+          <p class="summary">Canonical hasn&#x27;t officially shipped its AI dictation feature for Ubuntu yet, but the myna-config PPA, myna snap and a choice of speech-to-text models are already installable for anyone who wants to test it early.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">24 Sep</td>
+      </tr>
+      <tr data-section="dev" data-haystack="openkylin 3.0 release makes it a &quot;ai first&quot; linux desktop the openkylin 3.0 linux desktop release ships kernel 7.0 and a ukui 4.24 desktop with a built-in ai agent framework and an assistant that can control the system directly, worth noting if you ever support linux desktop deployments. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://feed.itsfoss.com/link/24361/17471831/openkylin-3-0-released" target="_blank" rel="noopener noreferrer">openKylin 3.0 Release Makes it a &quot;AI first&quot; Linux Desktop</a>
+          <p class="summary">The openKylin 3.0 Linux desktop release ships kernel 7.0 and a UKUI 4.24 desktop with a built-in AI agent framework and an assistant that can control the system directly, worth noting if you ever support Linux desktop deployments.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">24 Sep</td>
+      </tr>
+      <tr data-section="dev" data-haystack="google beam expands with new regions, partners, and customers google&#x27;s ai-powered video communication platform beam is expanding into more regions with new partners and enterprise customers, worth knowing if you evaluate video-calling platforms for client-facing tooling. google ai">
+        <td class="topic">
+          <a class="title" href="https://blog.google/innovation-and-ai/technology/research/google-beam-expansion/" target="_blank" rel="noopener noreferrer">Google Beam expands with new regions, partners, and customers</a>
+          <p class="summary">Google&#x27;s AI-powered video communication platform Beam is expanding into more regions with new partners and enterprise customers, worth knowing if you evaluate video-calling platforms for client-facing tooling.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Google AI</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">23 Sep</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="empty" id="empty">No updates match that filter.</div>
+  </div>
+
+  <footer>
+    <span>20 updates</span>
+    <span>Covering updates since 23 Sep, 10:27 IST</span>
+    <span>Every title links to its original source</span>
+  </footer>
+</div>
+<script>
+(function () {
+  var rows   = Array.prototype.slice.call(document.querySelectorAll('tbody tr'));
+  var chips  = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var search = document.getElementById('search');
+  var empty  = document.getElementById('empty');
+  var active = 'all';
+
+  function apply() {
+    var q = (search.value || '').trim().toLowerCase();
+    var shown = 0;
+    rows.forEach(function (row) {
+      var okSection = active === 'all' || row.dataset.section === active;
+      var okText = !q || row.dataset.haystack.indexOf(q) !== -1;
+      var show = okSection && okText;
+      row.hidden = !show;
+      if (show) shown++;
+    });
+    empty.classList.toggle('show', shown === 0);
+  }
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      active = chip.dataset.filter;
+      chips.forEach(function (c) {
+        c.setAttribute('aria-pressed', String(c === chip));
+      });
+      apply();
+    });
+  });
+
+  search.addEventListener('input', apply);
+})();
+</script>
+</body>
+</html>

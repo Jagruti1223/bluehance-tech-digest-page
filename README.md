@@ -1,24 +1,37 @@
 # Bluehance 360 - Daily Tech Digest (page host)
 
-This repository exists to serve one file: `index.html`, the daily tech digest
-page, published through GitHub Pages at
+Static host for the daily tech digest, served by GitHub Pages.
 
-**https://jagruti1223.github.io/bluehance-tech-digest-page/**
+| Address | What it is |
+|---|---|
+| [`/`](https://jagruti1223.github.io/bluehance-tech-digest-page/) | The newest day. A copy, so a bookmark of the bare URL keeps working |
+| `/2026-09-25/` | That day, permanently. This is the address posted to ClickUp |
+| [`/archive/`](https://jagruti1223.github.io/bluehance-tech-digest-page/archive/) | Every day published so far, newest first |
 
-It is generated and pushed automatically every weekday by the digest pipeline
-in the private `bluehance360-ops-briefing` repository. **Do not edit
-`index.html` by hand** - the next run overwrites it.
+Each weekday gets its own dated address, so the link in the channel changes
+daily and a link shared last week still shows what it showed when it was sent.
+Days are never overwritten or removed.
 
-The repository is public because GitHub Pages cannot serve a private repository
-without a paid plan. The content is aggregated public tech news, but it carries
-the company name, so the page is served with `noindex, nofollow` to keep it out
-of search results. The link is for the team, not for the web.
+Everything here is generated and pushed automatically each weekday at roughly
+10:30 AM IST by the digest pipeline in the private `bluehance360-ops-briefing`
+repository. **Do not edit these files by hand** - the next run overwrites the
+root page and the archive.
 
-Nothing here is a source of truth. The pipeline lives in `digest/` in the
-private repository.
+The archive index is rebuilt from whatever dated directories exist, so a day
+restored by hand reappears in it with no further bookkeeping.
 
-## When it updates
+## Why this repository is public
 
-Every weekday at roughly 10:30 AM IST. `index.html` carries its own date in
-the page title, so if that date is not today's, the pipeline failed rather
-than the news being quiet - check the Actions tab of the private repository.
+GitHub Pages cannot serve a private repository without a paid plan, so the page
+- and only the page - lives in a public one. The content is aggregated public
+tech news, published with `noindex, nofollow` so it stays out of search results.
+Treat it as readable by anyone with the URL and never put anything internal here.
+
+## Spotting a failed run
+
+Every page carries its own date in the title. If the newest entry in the archive
+is not the last working day, publishing failed rather than the news being quiet -
+check the Actions tab of the private repository.
+
+The 22 September page holds only 4 items because the digest ran twice that day;
+the second run found just a few hours of new material. It is kept as it was.
