@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Daily Tech Update - 13 Oct 2026</title>
+<title>Daily Tech Update - 14 Oct 2026</title>
 <meta name="description" content="Daily AI, developer tooling and Wix platform updates for the Bluehance 360 engineering team.">
 <!-- The page is served from a public repo so GitHub Pages can host it without a
      paid plan. The content is public tech news, but it carries the company name,
@@ -323,13 +323,13 @@ footer {
   <header class="masthead">
     <div class="eyebrow">Bluehance 360 &middot; Engineering</div>
     <h1>Daily Tech Update</h1>
-    <div class="dateline">Tuesday, 13 October 2026</div>
+    <div class="dateline">Wednesday, 14 October 2026</div>
     <a class="archive-link" href="https://jagruti1223.github.io/bluehance-tech-digest-page/archive/">Previous days</a>
   </header>
 
   <div class="controls">
     <div class="chips">
-      <button class="chip" data-filter="all" aria-pressed="true">All<span class="n">38</span></button><button class="chip" data-filter="wix" aria-pressed="false">Wix<span class="n">17</span></button><button class="chip" data-filter="ai" aria-pressed="false">AI &amp; Models<span class="n">10</span></button><button class="chip" data-filter="dev" aria-pressed="false">Dev Tools<span class="n">11</span></button>
+      <button class="chip" data-filter="all" aria-pressed="true">All<span class="n">34</span></button><button class="chip" data-filter="wix" aria-pressed="false">Wix<span class="n">21</span></button><button class="chip" data-filter="ai" aria-pressed="false">AI &amp; Models<span class="n">6</span></button><button class="chip" data-filter="dev" aria-pressed="false">Dev Tools<span class="n">7</span></button>
     </div>
     <input id="search" class="search" type="search" placeholder="Search titles, sources, summaries"
            autocomplete="off" aria-label="Search updates">
@@ -356,32 +356,43 @@ footer {
         </td>
         <td class="date">04 Oct</td>
       </tr>
-      <tr data-section="wix" data-haystack="deprecated method: payments create card token the create card token method of the card tokens api has been deprecated. wix developer changelog">
+      <tr data-section="wix" data-haystack="fully released: domains domain transfer in api the domain transfer in api is no longer in developer preview. this means it isn&#x27;t subject to breaking changes and can be used in production. wix developer changelog">
         <td class="topic">
-          <span class="flag">Deprecated</span><a class="title" href="https://dev.wix.com/docs/api-reference/business-management/payments/wix-payments-provider/card-tokens/introduction" target="_blank" rel="noopener noreferrer">Deprecated method: Payments Create Card Token</a>
-          <p class="summary">The Create Card Token method of the Card Tokens API has been deprecated.</p>
+          <a class="title" href="https://dev.wix.com/docs/api-reference/account-level/domains/domain-transfer-in/introduction" target="_blank" rel="noopener noreferrer">Fully released: Domains Domain Transfer In API</a>
+          <p class="summary">The Domain Transfer In API is no longer in Developer Preview. This means it isn&#x27;t subject to breaking changes and can be used in production.</p>
         </td>
         <td class="meta">
           <span class="source">Wix Developer Changelog</span>
           <span class="section-tag">Wix</span>
         </td>
-        <td class="date">30 Sep</td>
-      </tr>
-      <tr data-section="wix" data-haystack="deprecated methods: payments transactions api the following methods of the transactions api have been deprecated: create transaction get transaction capture transaction void or refund transaction. wix developer changelog">
-        <td class="topic">
-          <span class="flag">Deprecated</span><a class="title" href="https://dev.wix.com/docs/api-reference/business-management/payments/wix-payments-provider/transactions/introduction" target="_blank" rel="noopener noreferrer">Deprecated methods: Payments Transactions API</a>
-          <p class="summary">The following methods of the Transactions API have been deprecated: Create Transaction Get Transaction Capture Transaction Void Or Refund Transaction.</p>
-        </td>
-        <td class="meta">
-          <span class="source">Wix Developer Changelog</span>
-          <span class="section-tag">Wix</span>
-        </td>
-        <td class="date">30 Sep</td>
+        <td class="date">14 Oct</td>
       </tr>
       <tr data-section="wix" data-haystack="new feature: astro 7 support in wix-managed headless projects you can now connect an astro 7 project to wix as a wix-managed headless project. the headless link command now accepts astro 5 and astro 7 projects. astro 6 isn&#x27;t supported. wix developer changelog">
         <td class="topic">
           <a class="title" href="https://dev.wix.com/docs/go-headless/wix-managed-headless/full-integration-astro/get-started/connect-an-existing-astro-project" target="_blank" rel="noopener noreferrer">New feature: Astro 7 support in Wix-managed headless projects</a>
           <p class="summary">You can now connect an Astro 7 project to Wix as a Wix-managed headless project. The headless link command now accepts Astro 5 and Astro 7 projects. Astro 6 isn&#x27;t supported.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">13 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new feature: commenter and replier details in the feedback comments api you can now see who left each comment on a site and who wrote each reply. specify commenter in fields on any method that returns a comment to get the reviewer&#x27;s name and email in commenter . each reply now carries a replier that says... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/account-level/studio-workspace/feedback/comment-v1/introduction" target="_blank" rel="noopener noreferrer">New feature: Commenter and replier details in the Feedback Comments API</a>
+          <p class="summary">You can now see who left each comment on a site and who wrote each reply. Specify COMMENTER in fields on any method that returns a comment to get the reviewer&#x27;s name and email in commenter . Each reply now carries a replier that says...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">14 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new feature: site plugin placement slot ids you can now declare the slots that can host a site plugin by listing a placement slot id for each slot in the placementsslotids array of the plugin&#x27;s configuration. every supported wix app page now lists the placement slot id for each of... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/build-apps/develop-your-app/extensions/site-extensions/site-plugins/supported-wix-app-pages/about-slots" target="_blank" rel="noopener noreferrer">New feature: Site plugin placement slot IDs</a>
+          <p class="summary">You can now declare the slots that can host a site plugin by listing a placement slot ID for each slot in the placementsSlotIds array of the plugin&#x27;s configuration. Every supported Wix app page now lists the placement slot ID for each of...</p>
         </td>
         <td class="meta">
           <span class="source">Wix Developer Changelog</span>
@@ -399,6 +410,28 @@ footer {
           <span class="section-tag">Wix</span>
         </td>
         <td class="date">05 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new method: identity connection v1 list enabled connections client data the identity connection v1 api now includes a list enabled connections client data method. use it to retrieve the connections currently enabled for signing in to a site, returning only client-safe fields and excluding sensitive backend... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/wix-backoffice/identity/connection-v1/list-enabled-connections-client-data" target="_blank" rel="noopener noreferrer">New method: Identity Connection V1 List Enabled Connections Client Data</a>
+          <p class="summary">The Identity Connection V1 API now includes a List Enabled Connections Client Data method. Use it to retrieve the connections currently enabled for signing in to a site, returning only client-safe fields and excluding sensitive backend...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">13 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new method: marketing automation email action generate action input mapping the automation email action api now includes a generate action input mapping method. use it to set up a new send email action and the email it sends, then add the action to an automation with the automations v2 api . the api previously... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-management/marketing/emails/automation-email-action/generate-action-input-mapping" target="_blank" rel="noopener noreferrer">New method: Marketing Automation Email Action Generate Action Input Mapping</a>
+          <p class="summary">The Automation Email Action API now includes a Generate Action Input Mapping method. Use it to set up a new send email action and the email it sends, then add the action to an automation with the Automations V2 API . The API previously...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">14 Oct</td>
       </tr>
       <tr data-section="wix" data-haystack="new method: restaurants reservations preview cancellation fee (version 1.0.407) the restaurants reservations api now includes a preview cancellation fee method. use it to check whether a cancellation or no-show fee applies to a reservation and how much it would be, without cancelling the reservation. wix developer changelog">
         <td class="topic">
@@ -432,6 +465,17 @@ footer {
           <span class="section-tag">Wix</span>
         </td>
         <td class="date">05 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new release: app management apps api the apps api lets developer tools create and configure wix apps. use it to set up an app&#x27;s identity and authentication settings before adding functionality or preparing a release. set an app&#x27;s display name, oauth urls, and installation... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/app-management/apps/introduction" target="_blank" rel="noopener noreferrer">New release: App Management Apps API</a>
+          <p class="summary">The Apps API lets developer tools create and configure Wix apps. Use it to set up an app&#x27;s identity and authentication settings before adding functionality or preparing a release. Set an app&#x27;s display name, OAuth URLs, and installation...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">14 Oct</td>
       </tr>
       <tr data-section="wix" data-haystack="new release: app management tools host and app skills apis (version 1.0.7) apps can now expose tools and skills to ai agents such as aria working on a wix site, through 2 new apis: tools host : retrieve the tools of every installed app, run them, and switch an app&#x27;s tools off for a site. app skills : retrieve the... wix developer changelog">
         <td class="topic">
@@ -532,32 +576,32 @@ footer {
         </td>
         <td class="date">08 Oct</td>
       </tr>
-      <tr data-section="ai" data-haystack="meta releases its first frontier model, muse wonder meta released muse wonder, its larger frontier models with higher benchmark scores and stronger coding and complex-task results than the lightweight muse spark. techcrunch ai">
+      <tr data-section="ai" data-haystack="gemini 4 argon is now available for developers. google released gemini 4 argon through the gemini api with a developer guide and support in antigravity and android studio, aimed at complex software workflows. google developers">
         <td class="topic">
-          <a class="title" href="https://techcrunch.com/2026/10/12/meta-releases-its-first-frontier-model-muse-wonder/" target="_blank" rel="noopener noreferrer">Meta releases its first frontier model, Muse Wonder</a>
-          <p class="summary">Meta released Muse Wonder, its larger frontier models with higher benchmark scores and stronger coding and complex-task results than the lightweight Muse Spark.</p>
+          <a class="title" href="https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-4-argon/" target="_blank" rel="noopener noreferrer">Gemini 4 Argon is now available for developers.</a>
+          <p class="summary">Google released Gemini 4 Argon through the Gemini API with a developer guide and support in Antigravity and Android Studio, aimed at complex software workflows.</p>
         </td>
         <td class="meta">
-          <span class="source">TechCrunch AI</span>
-          <span class="section-tag">AI &amp; Models</span>
-        </td>
-        <td class="date">12 Oct</td>
-      </tr>
-      <tr data-section="ai" data-haystack="openai announced over 20 new things, but this is the chatgpt feature i’ve been waiting for openai&#x27;s devday produced more than 20 announcements, including the dots agent feature and the chatgpt space workspace. daily.dev">
-        <td class="topic">
-          <a class="title" href="https://www.xda-developers.com/everyones-talking-about-dots-but-chatgpt-space-is-the-openai-launch-i-actually-care-about" target="_blank" rel="noopener noreferrer">OpenAI announced over 20 new things, but this is the ChatGPT feature I’ve been waiting for</a>
-          <p class="summary">OpenAI&#x27;s DevDay produced more than 20 announcements, including the Dots agent feature and the ChatGPT Space workspace.</p>
-        </td>
-        <td class="meta">
-          <span class="source">daily.dev</span>
+          <span class="source">Google Developers</span>
           <span class="section-tag">AI &amp; Models</span>
         </td>
         <td class="date">13 Oct</td>
       </tr>
-      <tr data-section="ai" data-haystack="introducing clef-omni with full multimodality, plus a faster clef and a cheaper clef-flash cloudflare added clef-omni, which handles audio, video, images and text in one pipeline, cut clef-flash pricing and sped up clef inference by up to 2x. cloudflare">
+      <tr data-section="ai" data-haystack="build long-horizon agents with grok 4.7 on amazon bedrock grok 4.7 is now available on amazon bedrock, with a worked tool-calling agent example showing how to tune reasoning effort per request to balance correctness against token cost. aws machine learning">
+        <td class="topic">
+          <a class="title" href="https://aws.amazon.com/blogs/machine-learning/build-long-horizon-agents-with-grok-4-7-on-amazon-bedrock/" target="_blank" rel="noopener noreferrer">Build long-horizon agents with Grok 4.7 on Amazon Bedrock</a>
+          <p class="summary">Grok 4.7 is now available on Amazon Bedrock, with a worked tool-calling agent example showing how to tune reasoning effort per request to balance correctness against token cost.</p>
+        </td>
+        <td class="meta">
+          <span class="source">AWS Machine Learning</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">13 Oct</td>
+      </tr>
+      <tr data-section="ai" data-haystack="introducing clef-omni with full multimodality, plus a faster clef and a cheaper clef-flash cloudflare added clef-omni, which handles audio, video, images and text in one pipeline, and cut clef-flash pricing while speeding up clef inference by up to 2x. cloudflare">
         <td class="topic">
           <a class="title" href="https://blog.cloudflare.com/clef-faster-cheaper-multimodal/" target="_blank" rel="noopener noreferrer">Introducing Clef-omni with full multimodality, plus a faster Clef and a cheaper Clef-flash</a>
-          <p class="summary">Cloudflare added Clef-omni, which handles audio, video, images and text in one pipeline, cut Clef-flash pricing and sped up Clef inference by up to 2x.</p>
+          <p class="summary">Cloudflare added Clef-omni, which handles audio, video, images and text in one pipeline, and cut Clef-flash pricing while speeding up Clef inference by up to 2x.</p>
         </td>
         <td class="meta">
           <span class="source">Cloudflare</span>
@@ -565,10 +609,32 @@ footer {
         </td>
         <td class="date">09 Oct</td>
       </tr>
-      <tr data-section="ai" data-haystack="accessing openai gpt models on amazon bedrock with global cross-region inference in thailand, malaysia, singapore, indonesia, and taiwan openai&#x27;s gpt-6 sol, luna and astra models can now be called on amazon bedrock through global cross-region inference from singapore, jakarta, thailand, malaysia and taipei using the converse or openai-compatible apis. aws machine learning">
+      <tr data-section="ai" data-haystack="run fast, private agents on-device with lfm2.5-24b-a2b liquid ai&#x27;s lfm2.5-24b-a2b is a mixture-of-experts model built to run agents privately and quickly on-device. hugging face">
+        <td class="topic">
+          <a class="title" href="https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b" target="_blank" rel="noopener noreferrer">Run fast, private agents on-device with LFM2.5-24B-A2B</a>
+          <p class="summary">Liquid AI&#x27;s LFM2.5-24B-A2B is a mixture-of-experts model built to run agents privately and quickly on-device.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Hugging Face</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">13 Oct</td>
+      </tr>
+      <tr data-section="ai" data-haystack="google makes it easier to launch your vibe-coded apps apps built in google ai studio can now be launched directly through the play store in the us, removing the need to sideload them from a computer. the verge ai">
+        <td class="topic">
+          <a class="title" href="https://www.theverge.com/tech/1009066/google-play-vibe-coded-android-apps-launch" target="_blank" rel="noopener noreferrer">Google makes it easier to launch your vibe-coded apps</a>
+          <p class="summary">Apps built in Google AI Studio can now be launched directly through the Play Store in the US, removing the need to sideload them from a computer.</p>
+        </td>
+        <td class="meta">
+          <span class="source">The Verge AI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">13 Oct</td>
+      </tr>
+      <tr data-section="ai" data-haystack="accessing openai gpt models on amazon bedrock with global cross-region inference in thailand, malaysia, singapore, indonesia, and taiwan openai gpt-6 sol, luna and astra are reachable on amazon bedrock via global cross-region inference from singapore, jakarta, thailand, malaysia and taipei, through both the converse and openai-compatible apis. aws machine learning">
         <td class="topic">
           <a class="title" href="https://aws.amazon.com/blogs/machine-learning/accessing-openai-gpt-models-on-amazon-bedrock-with-global-cross-region-inference-in-thailand-malaysia-singapore-indonesia-and-taiwan/" target="_blank" rel="noopener noreferrer">Accessing OpenAI GPT models on Amazon Bedrock with global cross-Region inference in Thailand, Malaysia, Singapore, Indonesia, and Taiwan</a>
-          <p class="summary">OpenAI&#x27;s GPT-6 Sol, Luna and Astra models can now be called on Amazon Bedrock through global cross-Region inference from Singapore, Jakarta, Thailand, Malaysia and Taipei using the Converse or OpenAI-compatible APIs.</p>
+          <p class="summary">OpenAI GPT-6 Sol, Luna and Astra are reachable on Amazon Bedrock via global cross-Region inference from Singapore, Jakarta, Thailand, Malaysia and Taipei, through both the Converse and OpenAI-compatible APIs.</p>
         </td>
         <td class="meta">
           <span class="source">AWS Machine Learning</span>
@@ -576,76 +642,10 @@ footer {
         </td>
         <td class="date">12 Oct</td>
       </tr>
-      <tr data-section="ai" data-haystack="one agent development kit, five languages google&#x27;s agent development kit now has native python, go, typescript, java and kotlin implementations that share mcp for tools and a2a for cross-language agent communication. daily.dev">
-        <td class="topic">
-          <a class="title" href="https://cloud.google.com/blog/topics/developers-practitioners/one-agent-development-kit-five-languages" target="_blank" rel="noopener noreferrer">One Agent Development Kit, five languages</a>
-          <p class="summary">Google&#x27;s Agent Development Kit now has native Python, Go, TypeScript, Java and Kotlin implementations that share MCP for tools and A2A for cross-language agent communication.</p>
-        </td>
-        <td class="meta">
-          <span class="source">daily.dev</span>
-          <span class="section-tag">AI &amp; Models</span>
-        </td>
-        <td class="date">13 Oct</td>
-      </tr>
-      <tr data-section="ai" data-haystack="2026 usage policy update anthropic published a new version of its usage policy, which is worth checking if you build products on claude. anthropic">
-        <td class="topic">
-          <a class="title" href="https://www.anthropic.com/news/2026-usage-policy-update" target="_blank" rel="noopener noreferrer">2026 Usage Policy update</a>
-          <p class="summary">Anthropic published a new version of its Usage Policy, which is worth checking if you build products on Claude.</p>
-        </td>
-        <td class="meta">
-          <span class="source">Anthropic</span>
-          <span class="section-tag">AI &amp; Models</span>
-        </td>
-        <td class="date">08 Oct</td>
-      </tr>
-      <tr data-section="ai" data-haystack="icymi: what landed for ai builders in september 2026 the september roundup of amazon bedrock, agentcore and strands changes covers broader model choice, faster serverless agents with built-in evaluation, and automated knowledge base syncing with enterprise connectors. aws machine learning">
-        <td class="topic">
-          <a class="title" href="https://aws.amazon.com/blogs/machine-learning/icymi-what-landed-for-ai-builders-in-september-2026/" target="_blank" rel="noopener noreferrer">ICYMI: What landed for AI builders in September 2026</a>
-          <p class="summary">The September roundup of Amazon Bedrock, AgentCore and Strands changes covers broader model choice, faster serverless agents with built-in evaluation, and automated knowledge base syncing with enterprise connectors.</p>
-        </td>
-        <td class="meta">
-          <span class="source">AWS Machine Learning</span>
-          <span class="section-tag">AI &amp; Models</span>
-        </td>
-        <td class="date">09 Oct</td>
-      </tr>
-      <tr data-section="ai" data-haystack="run multi-node inference workloads using ray llm deep learning containers aws documents deploying one llm across two gpu nodes on eks with separate prefill and decode nodes behind a single openai-compatible endpoint using ray llm containers. aws machine learning">
-        <td class="topic">
-          <a class="title" href="https://aws.amazon.com/blogs/machine-learning/run-multi-node-inference-workloads-using-ray-llm-deep-learning-containers/" target="_blank" rel="noopener noreferrer">Run multi-node inference workloads using Ray LLM Deep Learning Containers</a>
-          <p class="summary">AWS documents deploying one LLM across two GPU nodes on EKS with separate prefill and decode nodes behind a single OpenAI-compatible endpoint using Ray LLM containers.</p>
-        </td>
-        <td class="meta">
-          <span class="source">AWS Machine Learning</span>
-          <span class="section-tag">AI &amp; Models</span>
-        </td>
-        <td class="date">12 Oct</td>
-      </tr>
-      <tr data-section="ai" data-haystack="deploy decision models with llama.cpp on amazon sagemaker ai aws shows how to serve openai-compatible chat completions from llama.cpp on sagemaker ai and return probabilities over declared options on cpu with semif. aws machine learning">
-        <td class="topic">
-          <a class="title" href="https://aws.amazon.com/blogs/machine-learning/deploy-decision-models-with-llama-cpp-on-amazon-sagemaker-ai/" target="_blank" rel="noopener noreferrer">Deploy decision models with llama.cpp on Amazon SageMaker AI</a>
-          <p class="summary">AWS shows how to serve OpenAI-compatible chat completions from llama.cpp on SageMaker AI and return probabilities over declared options on CPU with SemIf.</p>
-        </td>
-        <td class="meta">
-          <span class="source">AWS Machine Learning</span>
-          <span class="section-tag">AI &amp; Models</span>
-        </td>
-        <td class="date">12 Oct</td>
-      </tr>
-      <tr data-section="ai" data-haystack="building a rag pipeline with llm embeddings and scikit-learn a tutorial builds a rag pipeline entirely locally using sentence-transformers all-minilm-l6-v2 embeddings and scikit-learn nearest neighbors with cosine distance, with no paid apis. daily.dev">
-        <td class="topic">
-          <a class="title" href="https://machinelearningmastery.com/building-a-rag-pipeline-with-llm-embeddings-and-scikit-learn" target="_blank" rel="noopener noreferrer">Building a RAG Pipeline with LLM Embeddings and Scikit-learn</a>
-          <p class="summary">A tutorial builds a RAG pipeline entirely locally using sentence-transformers all-MiniLM-L6-v2 embeddings and scikit-learn nearest neighbors with cosine distance, with no paid APIs.</p>
-        </td>
-        <td class="meta">
-          <span class="source">daily.dev</span>
-          <span class="section-tag">AI &amp; Models</span>
-        </td>
-        <td class="date">13 Oct</td>
-      </tr>
-      <tr data-section="dev" data-haystack="deno is joining cloudflare cloudflare is acquiring deno and plans to build on celld, deno&#x27;s open source durable objects implementation, which could shape the future of deno and workers runtimes. simon willison">
+      <tr data-section="dev" data-haystack="deno is joining cloudflare cloudflare is acquiring deno and plans to build on its open source celld implementation of the durable objects pattern, which affects anyone betting on deno or workers runtimes. simon willison">
         <td class="topic">
           <a class="title" href="https://simonwillison.net/2026/Oct/9/deno-is-joining-cloudflare/" target="_blank" rel="noopener noreferrer">Deno is joining Cloudflare</a>
-          <p class="summary">Cloudflare is acquiring Deno and plans to build on celld, Deno&#x27;s open source Durable Objects implementation, which could shape the future of Deno and Workers runtimes.</p>
+          <p class="summary">Cloudflare is acquiring Deno and plans to build on its open source celld implementation of the Durable Objects pattern, which affects anyone betting on Deno or Workers runtimes.</p>
         </td>
         <td class="meta">
           <span class="source">Simon Willison</span>
@@ -653,10 +653,10 @@ footer {
         </td>
         <td class="date">10 Oct</td>
       </tr>
-      <tr data-section="dev" data-haystack="introducing on-demand cpu and memory profiling with flamegraphs for workers and durable objects cloudflare workers and durable objects now support on-demand cpu and memory profiling with flamegraphs in production, making memory leaks and slow code paths easier to trace. cloudflare">
+      <tr data-section="dev" data-haystack="introducing on-demand cpu and memory profiling with flamegraphs for workers and durable objects cloudflare workers and durable objects now support on-demand cpu and memory profiling that produces interactive flamegraphs in production, making memory leaks and slow paths easier to find. cloudflare">
         <td class="topic">
           <a class="title" href="https://blog.cloudflare.com/workers-on-demand-profiling/" target="_blank" rel="noopener noreferrer">Introducing on-demand CPU and memory profiling with flamegraphs for Workers and Durable Objects</a>
-          <p class="summary">Cloudflare Workers and Durable Objects now support on-demand CPU and memory profiling with flamegraphs in production, making memory leaks and slow code paths easier to trace.</p>
+          <p class="summary">Cloudflare Workers and Durable Objects now support on-demand CPU and memory profiling that produces interactive flamegraphs in production, making memory leaks and slow paths easier to find.</p>
         </td>
         <td class="meta">
           <span class="source">Cloudflare</span>
@@ -664,10 +664,10 @@ footer {
         </td>
         <td class="date">09 Oct</td>
       </tr>
-      <tr data-section="dev" data-haystack="hello python 3.15, goodbye 3.10, and now i can use 3.11 python 3.15 is out with a new profiler and a refreshed what&#x27;s new guide, and python 3.10 is now end of life for projects that track supported versions. simon willison">
+      <tr data-section="dev" data-haystack="hello python 3.15, goodbye 3.10, and now i can use 3.11 python 3.15 has been released and python 3.10 reaches end of life, so libraries can now drop 3.10 and target 3.11 as the minimum. simon willison">
         <td class="topic">
           <a class="title" href="https://simonwillison.net/2026/Oct/12/python-3-15/" target="_blank" rel="noopener noreferrer">Hello Python 3.15, goodbye 3.10, and now I can use 3.11</a>
-          <p class="summary">Python 3.15 is out with a new profiler and a refreshed what&#x27;s new guide, and Python 3.10 is now end of life for projects that track supported versions.</p>
+          <p class="summary">Python 3.15 has been released and Python 3.10 reaches end of life, so libraries can now drop 3.10 and target 3.11 as the minimum.</p>
         </td>
         <td class="meta">
           <span class="source">Simon Willison</span>
@@ -675,21 +675,21 @@ footer {
         </td>
         <td class="date">12 Oct</td>
       </tr>
-      <tr data-section="dev" data-haystack="filter, reshape, and redact logs before export with transformers cloudflare logpush now supports transformers, letting you filter, redact and reshape log streams with sql before they reach the destination. cloudflare">
+      <tr data-section="dev" data-haystack="google antigravity sdk adds local model support for greater token efficiency and code privacy the google antigravity sdk now supports local models, so agentic coding can run on your own machine with a cloud model optionally handling high-level planning. daily.dev">
         <td class="topic">
-          <a class="title" href="https://blog.cloudflare.com/transformers-on-logpush/" target="_blank" rel="noopener noreferrer">Filter, reshape, and redact logs before export with Transformers</a>
-          <p class="summary">Cloudflare Logpush now supports Transformers, letting you filter, redact and reshape log streams with SQL before they reach the destination.</p>
+          <a class="title" href="https://www.infoq.com/news/2026/10/antigravity-sdk-local-models" target="_blank" rel="noopener noreferrer">Google Antigravity SDK Adds Local Model Support for Greater Token Efficiency and Code Privacy</a>
+          <p class="summary">The Google Antigravity SDK now supports local models, so agentic coding can run on your own machine with a cloud model optionally handling high-level planning.</p>
         </td>
         <td class="meta">
-          <span class="source">Cloudflare</span>
+          <span class="source">daily.dev</span>
           <span class="section-tag">Dev Tools</span>
         </td>
-        <td class="date">12 Oct</td>
+        <td class="date">14 Oct</td>
       </tr>
-      <tr data-section="dev" data-haystack="visual studio code 1.142 (insiders) visual studio code 1.142 is available in insiders, previewing the next stable editor release. vs code">
+      <tr data-section="dev" data-haystack="visual studio code 1.142 (insiders) visual studio code 1.142 is available in the insiders build, previewing the next stable release&#x27;s changes. vs code">
         <td class="topic">
           <a class="title" href="https://code.visualstudio.com/updates/v1_142" target="_blank" rel="noopener noreferrer">Visual Studio Code 1.142 (Insiders)</a>
-          <p class="summary">Visual Studio Code 1.142 is available in Insiders, previewing the next stable editor release.</p>
+          <p class="summary">Visual Studio Code 1.142 is available in the Insiders build, previewing the next stable release&#x27;s changes.</p>
         </td>
         <td class="meta">
           <span class="source">VS Code</span>
@@ -697,10 +697,21 @@ footer {
         </td>
         <td class="date">14 Oct</td>
       </tr>
-      <tr data-section="dev" data-haystack="github copilot app for beginners: how to teach copilot about your codebase github&#x27;s guide shows how to give copilot repository context through custom instructions, skills, custom agents and mcp servers such as playwright. github">
+      <tr data-section="dev" data-haystack="your browser can do what?! 5 ai features that actually work a react and typescript walkthrough using transformers.js 4.3.1 shows in-browser features such as background removal, alt text generation and text-to-ticket conversion with no server calls. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://dev.to/sylwia-lask/your-browser-can-do-what-5-ai-features-that-actually-work-1blb" target="_blank" rel="noopener noreferrer">Your Browser Can Do WHAT?! 5 AI Features That Actually Work</a>
+          <p class="summary">A React and TypeScript walkthrough using Transformers.js 4.3.1 shows in-browser features such as background removal, alt text generation and text-to-ticket conversion with no server calls.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">14 Oct</td>
+      </tr>
+      <tr data-section="dev" data-haystack="github copilot app for beginners: how to teach copilot about your codebase a github guide covers teaching copilot about a repository using custom instructions, skills, custom agents and mcp servers such as playwright. github">
         <td class="topic">
           <a class="title" href="https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-teach-copilot-about-your-codebase/" target="_blank" rel="noopener noreferrer">GitHub Copilot app for Beginners: How to teach Copilot about your codebase</a>
-          <p class="summary">GitHub&#x27;s guide shows how to give Copilot repository context through custom instructions, skills, custom agents and MCP servers such as Playwright.</p>
+          <p class="summary">A GitHub guide covers teaching Copilot about a repository using custom instructions, skills, custom agents and MCP servers such as Playwright.</p>
         </td>
         <td class="meta">
           <span class="source">GitHub</span>
@@ -708,69 +719,14 @@ footer {
         </td>
         <td class="date">12 Oct</td>
       </tr>
-      <tr data-section="dev" data-haystack="introducing remote mcp for octopus deploy octopus deploy now has a built-in remote mcp server at the instance&#x27;s /mcp endpoint, so agents can query projects and deployments over http without a local install. daily.dev">
-        <td class="topic">
-          <a class="title" href="https://octopus.com/blog/introducing-remote-mcp" target="_blank" rel="noopener noreferrer">Introducing remote MCP for Octopus Deploy</a>
-          <p class="summary">Octopus Deploy now has a built-in remote MCP server at the instance&#x27;s /mcp endpoint, so agents can query projects and deployments over HTTP without a local install.</p>
-        </td>
-        <td class="meta">
-          <span class="source">daily.dev</span>
-          <span class="section-tag">Dev Tools</span>
-        </td>
-        <td class="date">13 Oct</td>
-      </tr>
-      <tr data-section="dev" data-haystack="building a woocommerce b2b store with ai: how b2bking’s mcp integration works the b2bking woocommerce plugin now exposes store settings to claude and codex through the wordpress abilities api and mcp adapter, allowing plain-english store configuration. daily.dev">
-        <td class="topic">
-          <a class="title" href="https://wpmayor.com/woocommerce-b2b-store-b2bking-ai-mcp" target="_blank" rel="noopener noreferrer">Building a WooCommerce B2B Store with AI: How B2BKing’s MCP Integration Works</a>
-          <p class="summary">The B2BKing WooCommerce plugin now exposes store settings to Claude and Codex through the WordPress Abilities API and MCP Adapter, allowing plain-English store configuration.</p>
-        </td>
-        <td class="meta">
-          <span class="source">daily.dev</span>
-          <span class="section-tag">Dev Tools</span>
-        </td>
-        <td class="date">13 Oct</td>
-      </tr>
-      <tr data-section="dev" data-haystack="fx is a coding agent that tells you which parts of mcp it does not do vercel labs released fx, an experimental 6mb open source coding agent written in zig that documents exactly which parts of the model context protocol it supports. daily.dev">
-        <td class="topic">
-          <a class="title" href="https://apievangelist.com/2026/10/13/fx-is-a-coding-agent-that-tells-you-which-parts-of-mcp-it-does-not-do" target="_blank" rel="noopener noreferrer">fx Is A Coding Agent That Tells You Which Parts Of MCP It Does Not Do</a>
-          <p class="summary">Vercel Labs released fx, an experimental 6MB open source coding agent written in Zig that documents exactly which parts of the Model Context Protocol it supports.</p>
-        </td>
-        <td class="meta">
-          <span class="source">daily.dev</span>
-          <span class="section-tag">Dev Tools</span>
-        </td>
-        <td class="date">13 Oct</td>
-      </tr>
-      <tr data-section="dev" data-haystack="ttok 1.0 the ttok token-counting cli hit 1.0 and now defaults to the gpt-5/gpt-6 tokenizer instead of the gpt-4 one, which changes counts for existing scripts. simon willison">
-        <td class="topic">
-          <a class="title" href="https://simonwillison.net/2026/Oct/9/ttok/" target="_blank" rel="noopener noreferrer">ttok 1.0</a>
-          <p class="summary">The ttok token-counting CLI hit 1.0 and now defaults to the GPT-5/GPT-6 tokenizer instead of the GPT-4 one, which changes counts for existing scripts.</p>
-        </td>
-        <td class="meta">
-          <span class="source">Simon Willison</span>
-          <span class="section-tag">Dev Tools</span>
-        </td>
-        <td class="date">09 Oct</td>
-      </tr>
-      <tr data-section="dev" data-haystack="twenty-five thousand overlays, and none of them are yours yet a catalog of 25,011 openapi overlay documents shows that no api provider publishes its own overlay on its domain, so overlays are currently third-party artifacts. daily.dev">
-        <td class="topic">
-          <a class="title" href="https://apievangelist.com/2026/10/13/twenty-five-thousand-overlays-and-none-of-them-are-yours-yet" target="_blank" rel="noopener noreferrer">Twenty-Five Thousand Overlays, And None Of Them Are Yours Yet</a>
-          <p class="summary">A catalog of 25,011 OpenAPI Overlay documents shows that no API provider publishes its own Overlay on its domain, so Overlays are currently third-party artifacts.</p>
-        </td>
-        <td class="meta">
-          <span class="source">daily.dev</span>
-          <span class="section-tag">Dev Tools</span>
-        </td>
-        <td class="date">13 Oct</td>
-      </tr>
       </tbody>
     </table>
     <div class="empty" id="empty">No updates match that filter.</div>
   </div>
 
   <footer>
-    <span>38 updates</span>
-    <span>Covering updates since 08 Oct, 17:43 IST</span>
+    <span>34 updates</span>
+    <span>Covering updates since 09 Oct, 15:16 IST</span>
     <span>Every title links to its original source</span>
   </footer>
 </div>
