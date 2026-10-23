@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Tech Update - 23 Oct 2026</title>
+<meta name="description" content="Daily AI, developer tooling and Wix platform updates for the Bluehance 360 engineering team.">
+<!-- The page is served from a public repo so GitHub Pages can host it without a
+     paid plan. The content is public tech news, but it carries the company name,
+     so keep it out of search results: the link is meant for the team, not the web. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --paper:      #f7f8fa;
+  --surface:    #ffffff;
+  --surface-2:  #eef1f5;
+  --ink:        #10161d;
+  --ink-soft:   #47535f;
+  --muted:      #6b7785;
+  --rule:       #dde3ea;
+  --accent:     #1f5c9e;
+  --accent-lit: #6fa8dc;
+  --flag:       #b4531f;
+  --wix:        #1f5c9e;
+  --ai:         #4a6f8a;
+  --dev:        #5a7d5a;
+  --shadow:     0 1px 2px rgba(16,22,29,.06), 0 8px 24px -16px rgba(16,22,29,.28);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:      #0d1218;
+    --surface:    #141b23;
+    --surface-2:  #1c242e;
+    --ink:        #e8edf3;
+    --ink-soft:   #b3bfcb;
+    --muted:      #8593a1;
+    --rule:       #26313d;
+    --accent:     #7fb2e5;
+    --accent-lit: #a8cdf0;
+    --flag:       #e08a52;
+    --wix:        #7fb2e5;
+    --ai:         #93b4cc;
+    --dev:        #93b893;
+    --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"] {
+  --paper:      #0d1218;
+  --surface:    #141b23;
+  --surface-2:  #1c242e;
+  --ink:        #e8edf3;
+  --ink-soft:   #b3bfcb;
+  --muted:      #8593a1;
+  --rule:       #26313d;
+  --accent:     #7fb2e5;
+  --accent-lit: #a8cdf0;
+  --flag:       #e08a52;
+  --wix:        #7fb2e5;
+  --ai:         #93b4cc;
+  --dev:        #93b893;
+  --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 24px 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* --- masthead --- */
+.masthead { display: flex; flex-direction: column; gap: 10px; }
+
+.eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.archive-link {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  align-self: flex-start;
+  padding-bottom: 2px;
+}
+.archive-link:hover { color: var(--ink); }
+
+h1 {
+  font-family: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.dateline {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 15px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+/* --- controls --- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.chip {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background .12s ease, color .12s ease, border-color .12s ease;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--surface);
+}
+:root[data-theme="dark"] .chip[aria-pressed="true"],
+:root:not([data-theme="light"]) .chip[aria-pressed="true"] { color: #0d1218; }
+
+.chip .n {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  opacity: .7;
+  margin-left: 5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.search {
+  flex: 1 1 200px;
+  min-width: 180px;
+  margin-left: auto;
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  color: var(--ink);
+}
+.search::placeholder { color: var(--muted); }
+.search:focus-visible, .chip:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --- table --- */
+.table-scroll { overflow-x: auto; }
+
+table { width: 100%; border-collapse: collapse; }
+
+thead th {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  text-align: left;
+  padding: 0 14px 10px;
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--rule);
+  transition: background .12s ease;
+}
+tbody tr:hover { background: var(--surface); }
+
+tbody td { padding: 16px 14px; vertical-align: top; }
+
+/* Section identity lives in a left stripe rather than another badge column. */
+td.topic { border-left: 3px solid transparent; }
+tr[data-section="wix"] td.topic { border-left-color: var(--wix); }
+tr[data-section="ai"]  td.topic { border-left-color: var(--ai); }
+tr[data-section="dev"] td.topic { border-left-color: var(--dev); }
+
+.title {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.32;
+  letter-spacing: -.005em;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-block;
+}
+.title:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+.summary {
+  margin: 5px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+.flag {
+  display: inline-block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--flag);
+  border: 1px solid var(--flag);
+  border-radius: 3px;
+  padding: 1px 5px;
+  margin-right: 7px;
+  vertical-align: 2px;
+}
+
+td.meta { white-space: nowrap; }
+
+.source {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.section-tag {
+  display: block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+td.date {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.empty {
+  display: none;
+  padding: 40px 14px;
+  text-align: center;
+  color: var(--muted);
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 14px;
+}
+.empty.show { display: block; }
+
+footer {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: .04em;
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+}
+
+/* Stack the table into cards on narrow screens rather than scrolling it. */
+@media (max-width: 640px) {
+  .wrap { padding: 28px 16px 56px; }
+  thead { display: none; }
+  tbody tr { display: block; padding: 4px 0 10px; }
+  tbody td { display: block; padding: 4px 14px; }
+  td.topic { padding-top: 12px; }
+  td.meta, td.date { padding-top: 0; }
+  td.date { padding-bottom: 12px; }
+  .section-tag { display: inline; margin-left: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="eyebrow">Bluehance 360 &middot; Engineering</div>
+    <h1>Daily Tech Update</h1>
+    <div class="dateline">Friday, 23 October 2026</div>
+    <a class="archive-link" href="https://jagruti1223.github.io/bluehance-tech-digest-page/archive/">Previous days</a>
+  </header>
+
+  <div class="controls">
+    <div class="chips">
+      <button class="chip" data-filter="all" aria-pressed="true">All<span class="n">41</span></button><button class="chip" data-filter="wix" aria-pressed="false">Wix<span class="n">19</span></button><button class="chip" data-filter="ai" aria-pressed="false">AI &amp; Models<span class="n">12</span></button><button class="chip" data-filter="dev" aria-pressed="false">Dev Tools<span class="n">10</span></button>
+    </div>
+    <input id="search" class="search" type="search" placeholder="Search titles, sources, summaries"
+           autocomplete="off" aria-label="Search updates">
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Topic</th>
+          <th scope="col">Source</th>
+          <th scope="col">Published</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr data-section="wix" data-haystack="fully released: bookings availability time slots configuration and booking policy service plugins the availability time slots configuration and booking policy service plugins are no longer in developer preview. this means they aren&#x27;t subject to breaking changes and can be used in production. wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-solutions/bookings/introduction" target="_blank" rel="noopener noreferrer">Fully released: Bookings Availability Time Slots Configuration and Booking Policy service plugins</a>
+          <p class="summary">The Availability Time Slots Configuration and Booking Policy service plugins are no longer in Developer Preview. This means they aren&#x27;t subject to breaking changes and can be used in production.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">19 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="fully released: domains domain transfer in api the domain transfer in api is no longer in developer preview. this means it isn&#x27;t subject to breaking changes and can be used in production. wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/account-level/domains/domain-transfer-in/introduction" target="_blank" rel="noopener noreferrer">Fully released: Domains Domain Transfer In API</a>
+          <p class="summary">The Domain Transfer In API is no longer in Developer Preview. This means it isn&#x27;t subject to breaking changes and can be used in production.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">14 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new article: build custom login and signup pages with the astro integration learn how to build your own login and signup forms with wix headless astro integration and submit them to its built-in authentication routes, which handle oauth and the member session. the guide covers email verification, social login... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/go-headless/authentication/members/custom-login-page/build-custom-login-with-the-astro-integration" target="_blank" rel="noopener noreferrer">New article: Build custom login and signup pages with the Astro integration</a>
+          <p class="summary">Learn how to build your own login and signup forms with Wix Headless Astro integration and submit them to its built-in authentication routes, which handle OAuth and the member session. The guide covers email verification, social login...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">19 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new feature: astro 7 support in wix-managed headless projects you can now connect an astro 7 project to wix as a wix-managed headless project. the headless link command now accepts astro 5 and astro 7 projects. astro 6 isn&#x27;t supported. wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/go-headless/wix-managed-headless/full-integration-astro/get-started/connect-an-existing-astro-project" target="_blank" rel="noopener noreferrer">New feature: Astro 7 support in Wix-managed headless projects</a>
+          <p class="summary">You can now connect an Astro 7 project to Wix as a Wix-managed headless project. The headless link command now accepts Astro 5 and Astro 7 projects. Astro 6 isn&#x27;t supported.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">13 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new feature: commenter and replier details in the feedback comments api you can now see who left each comment on a site and who wrote each reply. specify commenter in fields on any method that returns a comment to get the reviewer&#x27;s name and email in commenter . each reply now carries a replier that says... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/account-level/studio-workspace/feedback/comment-v1/introduction" target="_blank" rel="noopener noreferrer">New feature: Commenter and replier details in the Feedback Comments API</a>
+          <p class="summary">You can now see who left each comment on a site and who wrote each reply. Specify COMMENTER in fields on any method that returns a comment to get the reviewer&#x27;s name and email in commenter . Each reply now carries a replier that says...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">14 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new feature: help center results in the semantic search api the semantic search api now includes a helpcenter document type. use it to search wix help center articles, which explain how to do things in the wix dashboard and editors, alongside the developer documentation the api already covered. wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/tools/semantic-search/search-documents" target="_blank" rel="noopener noreferrer">New feature: Help Center results in the Semantic Search API</a>
+          <p class="summary">The Semantic Search API now includes a HELPCENTER document type. Use it to search Wix Help Center articles, which explain how to do things in the Wix dashboard and editors, alongside the developer documentation the API already covered.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">16 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new feature: node.js 24.22.1 requirement for the cli the cli now requires node.js v24.22.1 or higher, up from v20.11.0. on unsupported versions, npm create @wix/new and the wix command stop with an error. upgrade node.js before creating or running a cli project for an app, a headless... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/build-apps/develop-your-app/develop-an-app-with-the-cli/get-started/quick-start-a-wix-cli-app" target="_blank" rel="noopener noreferrer">New feature: Node.js 24.22.1 requirement for the CLI</a>
+          <p class="summary">The CLI now requires Node.js v24.22.1 or higher, up from v20.11.0. On unsupported versions, npm create @wix/new and the wix command stop with an error. Upgrade Node.js before creating or running a CLI project for an app, a headless...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">22 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new feature: service plugin and event testing in cli previews for apps you can now test service plugin and event extensions in a cli preview instead of releasing an app version first. wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/build-apps/develop-your-app/develop-an-app-with-the-cli/project-development/build-and-deploy" target="_blank" rel="noopener noreferrer">New feature: Service plugin and event testing in CLI previews for apps</a>
+          <p class="summary">You can now test service plugin and event extensions in a CLI preview instead of releasing an app version first.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">19 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new feature: site plugin placement slot ids you can now declare the slots that can host a site plugin by listing a placement slot id for each slot in the placementsslotids array of the plugin&#x27;s configuration. every supported wix app page now lists the placement slot id for each of... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/build-apps/develop-your-app/extensions/site-extensions/site-plugins/supported-wix-app-pages/about-slots" target="_blank" rel="noopener noreferrer">New feature: Site plugin placement slot IDs</a>
+          <p class="summary">You can now declare the slots that can host a site plugin by listing a placement slot ID for each slot in the placementsSlotIds array of the plugin&#x27;s configuration. Every supported Wix app page now lists the placement slot ID for each of...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">13 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new feature: static site re-upload for wix-managed headless projects you can now upload a new version of a static site to the wix-managed headless project you created from it, instead of the upload always creating a new project. re-uploading stays available until you start developing the project in a local... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/go-headless/wix-managed-headless/other-frameworks/your-own-frontend/upload-a-static-site" target="_blank" rel="noopener noreferrer">New feature: Static site re-upload for Wix-managed headless projects</a>
+          <p class="summary">You can now upload a new version of a static site to the Wix-managed headless project you created from it, instead of the upload always creating a new project. Re-uploading stays available until you start developing the project in a local...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">18 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new feature: wix-managed headless migration for existing wix sites you can now replace an existing wix site&#x27;s editor-built frontend with a custom frontend that wix hosts using wix headless. you build the new frontend with an ai coding tool, preview it without changing the existing live site, then switch... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://support.wix.com/en/article/wix-headless-moving-your-site-to-a-custom-frontend" target="_blank" rel="noopener noreferrer">New feature: Wix-managed headless migration for existing Wix sites</a>
+          <p class="summary">You can now replace an existing Wix site&#x27;s editor-built frontend with a custom frontend that Wix hosts using Wix Headless. You build the new frontend with an AI coding tool, preview it without changing the existing live site, then switch...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">18 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new features: cli account, schema, and token commands the cli has 3 new commands: wix account : suggest available domains and get a checkout link to buy one for your account. wix schema : print a json schema of the available extension types. it describes the object that the --params flag of... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/wix-cli/command-reference/introduction" target="_blank" rel="noopener noreferrer">New features: CLI account, schema, and token commands</a>
+          <p class="summary">The CLI has 3 new commands: wix account : Suggest available domains and get a checkout link to buy one for your account. wix schema : Print a JSON schema of the available extension types. It describes the object that the --params flag of...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">19 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new method: google subscription v1 resolve business email action the google subscription v1 api now includes a resolve business email action method. use it to find out what to offer a customer whose business email expired or stopped working, such as renewing the plan, fixing a payment, or transferring... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/account-level/premium/business-email/google-subscription-v1/resolve-business-email-action" target="_blank" rel="noopener noreferrer">New method: Google Subscription V1 Resolve Business Email Action</a>
+          <p class="summary">The Google Subscription V1 API now includes a Resolve Business Email Action method. Use it to find out what to offer a customer whose Business Email expired or stopped working, such as renewing the plan, fixing a payment, or transferring...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">21 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new method: identity connection v1 enable connection the identity connection v1 api now includes an enable connection method. use it to activate a previously created connection so site visitors can sign in with it, or to restore a connection you temporarily disabled. wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/wix-backoffice/identity/connection-v1/enable-connection" target="_blank" rel="noopener noreferrer">New method: Identity Connection V1 Enable Connection</a>
+          <p class="summary">The Identity Connection V1 API now includes an Enable Connection method. Use it to activate a previously created connection so site visitors can sign in with it, or to restore a connection you temporarily disabled.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">15 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new method: identity connection v1 list enabled connections client data the identity connection v1 api now includes a list enabled connections client data method. use it to retrieve the connections currently enabled for signing in to a site, returning only client-safe fields and excluding sensitive backend... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/wix-backoffice/identity/connection-v1/list-enabled-connections-client-data" target="_blank" rel="noopener noreferrer">New method: Identity Connection V1 List Enabled Connections Client Data</a>
+          <p class="summary">The Identity Connection V1 API now includes a List Enabled Connections Client Data method. Use it to retrieve the connections currently enabled for signing in to a site, returning only client-safe fields and excluding sensitive backend...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">13 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new method: marketing automation email action generate action input mapping the automation email action api now includes a generate action input mapping method. use it to set up a new send email action and the email it sends, then add the action to an automation with the automations v2 api . the api previously... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-management/marketing/emails/automation-email-action/generate-action-input-mapping" target="_blank" rel="noopener noreferrer">New method: Marketing Automation Email Action Generate Action Input Mapping</a>
+          <p class="summary">The Automation Email Action API now includes a Generate Action Input Mapping method. Use it to set up a new send email action and the email it sends, then add the action to an automation with the Automations V2 API . The API previously...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">14 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new method: ricos documents generate file download url the ricos documents api now includes a generate file download url method. use it to generate a temporary url for downloading a file that a ricos document&#x27;s file node references. the url also works for private files, so site visitors can... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/assets/rich-content/ricos-documents/generate-file-download-url" target="_blank" rel="noopener noreferrer">New method: Ricos Documents Generate File Download URL</a>
+          <p class="summary">The Ricos Documents API now includes a Generate File Download URL method. Use it to generate a temporary URL for downloading a file that a Ricos document&#x27;s file node references. The URL also works for private files, so site visitors can...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">22 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new release: online programs categories api the categories api lets you manage reusable, site-level classifications for online programs. a category exists independently of any program, and you can assign it to many programs. create, retrieve, rename, and delete categories. assign... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-management/online-programs/categories/introduction" target="_blank" rel="noopener noreferrer">New release: Online Programs Categories API</a>
+          <p class="summary">The Categories API lets you manage reusable, site-level classifications for Online Programs. A category exists independently of any program, and you can assign it to many programs. Create, retrieve, rename, and delete categories. Assign...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">18 Oct</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new release: ecommerce subscription contracts and draft subscription contracts apis the ecommerce subscriptions apis let you work with the terms of a buyer&#x27;s subscription, such as the subscribed items, prices, and billing schedule. they include: subscription contracts : retrieve a site&#x27;s subscription contracts and listen... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-solutions/e-commerce/payments/subscriptions/introduction" target="_blank" rel="noopener noreferrer">New release: eCommerce Subscription Contracts and Draft Subscription Contracts APIs</a>
+          <p class="summary">The eCommerce Subscriptions APIs let you work with the terms of a buyer&#x27;s subscription, such as the subscribed items, prices, and billing schedule. They include: Subscription Contracts : Retrieve a site&#x27;s subscription contracts and listen...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">21 Oct</td>
+      </tr>
+      <tr data-section="ai" data-haystack="build more responsive apps with the decisions api openai made its decisions api generally available, offering fast, low-cost calls for making focused decisions inside an application, such as routing or classification, without a full frontier-model request. openai">
+        <td class="topic">
+          <a class="title" href="https://openai.com/index/decisions-api" target="_blank" rel="noopener noreferrer">Build more responsive apps with the Decisions API</a>
+          <p class="summary">OpenAI made its Decisions API generally available, offering fast, low-cost calls for making focused decisions inside an application, such as routing or classification, without a full frontier-model request.</p>
+        </td>
+        <td class="meta">
+          <span class="source">OpenAI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">23 Oct</td>
+      </tr>
+      <tr data-section="ai" data-haystack="openai models are coming to google cloud openai frontier models and codex workflows can now be used through google cloud&#x27;s model garden and marketplace, so teams on google cloud can reach them without a separate openai account. openai">
+        <td class="topic">
+          <a class="title" href="https://openai.com/index/openai-models-google-cloud" target="_blank" rel="noopener noreferrer">OpenAI models are coming to Google Cloud</a>
+          <p class="summary">OpenAI frontier models and Codex workflows can now be used through Google Cloud&#x27;s Model Garden and Marketplace, so teams on Google Cloud can reach them without a separate OpenAI account.</p>
+        </td>
+        <td class="meta">
+          <span class="source">OpenAI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">21 Oct</td>
+      </tr>
+      <tr data-section="ai" data-haystack="access openai gpt models on amazon bedrock from canada with cross-region inference openai gpt-5.6, gpt-6 and gpt-6.1 are now available on amazon bedrock in the canada central and calgary regions through cross-region inference, which helps projects with canadian data residency needs. aws machine learning">
+        <td class="topic">
+          <a class="title" href="https://aws.amazon.com/blogs/machine-learning/access-openai-gpt-models-on-amazon-bedrock-from-canada-with-cross-region-inference/" target="_blank" rel="noopener noreferrer">Access OpenAI GPT models on Amazon Bedrock from Canada with cross-Region inference</a>
+          <p class="summary">OpenAI GPT-5.6, GPT-6 and GPT-6.1 are now available on Amazon Bedrock in the Canada Central and Calgary regions through cross-Region inference, which helps projects with Canadian data residency needs.</p>
+        </td>
+        <td class="meta">
+          <span class="source">AWS Machine Learning</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">20 Oct</td>
+      </tr>
+      <tr data-section="ai" data-haystack="donating agent skills to the agentic ai foundation anthropic donated the agent skills standard to the agentic ai foundation under the linux foundation, so skill files you write should stay portable across vendors. simon willison">
+        <td class="topic">
+          <a class="title" href="https://simonwillison.net/2026/Oct/22/donating-agent-skills/" target="_blank" rel="noopener noreferrer">Donating Agent Skills to the Agentic AI Foundation</a>
+          <p class="summary">Anthropic donated the Agent Skills standard to the Agentic AI Foundation under the Linux Foundation, so skill files you write should stay portable across vendors.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Simon Willison</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">22 Oct</td>
+      </tr>
+      <tr data-section="ai" data-haystack="claude duet app is anthropic’s bet on agents anthropic is opening a waitlist for claude duet, an agent app for pro and max subscribers. techcrunch ai">
+        <td class="topic">
+          <a class="title" href="https://techcrunch.com/2026/10/22/claude-duet-app-is-anthropics-bet-on-agents/" target="_blank" rel="noopener noreferrer">Claude Duet app is Anthropic’s bet on agents</a>
+          <p class="summary">Anthropic is opening a waitlist for Claude Duet, an agent app for Pro and Max subscribers.</p>
+        </td>
+        <td class="meta">
+          <span class="source">TechCrunch AI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">22 Oct</td>
+      </tr>
+      <tr data-section="ai" data-haystack="recursive launches flint, a laptop coding model it says was largely built by ai recursive released flint, a free coding model small enough to run on a laptop, which makes local code assistance possible without an api bill. techcrunch ai">
+        <td class="topic">
+          <a class="title" href="https://techcrunch.com/2026/10/21/recursive-launches-flint-a-laptop-coding-model-it-says-was-largely-built-by-ai/" target="_blank" rel="noopener noreferrer">Recursive launches Flint, a laptop coding model it says was largely built by AI</a>
+          <p class="summary">Recursive released Flint, a free coding model small enough to run on a laptop, which makes local code assistance possible without an API bill.</p>
+        </td>
+        <td class="meta">
+          <span class="source">TechCrunch AI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">22 Oct</td>
+      </tr>
+      <tr data-section="ai" data-haystack="write your own training loop — without managing gpus — with amazon sagemaker training session apis amazon sagemaker ai training session apis let you write your own post-training loop in python, including sft, grpo reinforcement learning or custom objectives, while the service runs the gpus. aws machine learning">
+        <td class="topic">
+          <a class="title" href="https://aws.amazon.com/blogs/machine-learning/write-your-own-training-loop-without-managing-gpus-with-amazon-sagemaker-training-sessions/" target="_blank" rel="noopener noreferrer">Write your own training loop — without managing GPUs — with Amazon SageMaker training session APIs</a>
+          <p class="summary">Amazon SageMaker AI training session APIs let you write your own post-training loop in Python, including SFT, GRPO reinforcement learning or custom objectives, while the service runs the GPUs.</p>
+        </td>
+        <td class="meta">
+          <span class="source">AWS Machine Learning</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">22 Oct</td>
+      </tr>
+      <tr data-section="ai" data-haystack="nvidia agent toolkit expands, grounding enterprise agents in company data the open source nvidia agent toolkit gained new tools for grounding agents in company data and constraining what they are allowed to do. nvidia">
+        <td class="topic">
+          <a class="title" href="https://blogs.nvidia.com/blog/enterprise-platforms-agent-toolkit/" target="_blank" rel="noopener noreferrer">NVIDIA Agent Toolkit Expands, Grounding Enterprise Agents in Company Data</a>
+          <p class="summary">The open source NVIDIA Agent Toolkit gained new tools for grounding agents in company data and constraining what they are allowed to do.</p>
+        </td>
+        <td class="meta">
+          <span class="source">NVIDIA</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">21 Oct</td>
+      </tr>
+      <tr data-section="ai" data-haystack="5 production challenges in multi-agent systems and how deep insight solved them the open source deep insight project covers orchestration, per-agent model choice, secure code execution and monitoring for taking multi-agent systems from prototype to production. aws machine learning">
+        <td class="topic">
+          <a class="title" href="https://aws.amazon.com/blogs/machine-learning/5-production-challenges-in-multi-agent-systems-and-how-deep-insight-solved-them/" target="_blank" rel="noopener noreferrer">5 production challenges in multi-agent systems and how Deep Insight solved them</a>
+          <p class="summary">The open source Deep Insight project covers orchestration, per-agent model choice, secure code execution and monitoring for taking multi-agent systems from prototype to production.</p>
+        </td>
+        <td class="meta">
+          <span class="source">AWS Machine Learning</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">22 Oct</td>
+      </tr>
+      <tr data-section="ai" data-haystack="canva’s first ai image model plans designs before generating them canva released canva craft, an image model that plans a design layout before generating the image, positioned against openai, microsoft and google image models. the verge ai">
+        <td class="topic">
+          <a class="title" href="https://www.theverge.com/ai-artificial-intelligence/1017151/canva-craft-in-house-ai-model" target="_blank" rel="noopener noreferrer">Canva’s first AI image model plans designs before generating them</a>
+          <p class="summary">Canva released Canva Craft, an image model that plans a design layout before generating the image, positioned against OpenAI, Microsoft and Google image models.</p>
+        </td>
+        <td class="meta">
+          <span class="source">The Verge AI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">23 Oct</td>
+      </tr>
+      <tr data-section="ai" data-haystack="amazon polly delivers a major upgrade to its generative engine amazon polly&#x27;s generative engine received a drop-in upgrade with more expressive speech, 14 new voices and general availability of hindi and finnish, with no code changes required. aws machine learning">
+        <td class="topic">
+          <a class="title" href="https://aws.amazon.com/blogs/machine-learning/amazon-polly-delivers-a-major-upgrade-to-its-generative-engine/" target="_blank" rel="noopener noreferrer">Amazon Polly delivers a major upgrade to its Generative engine</a>
+          <p class="summary">Amazon Polly&#x27;s Generative engine received a drop-in upgrade with more expressive speech, 14 new voices and general availability of Hindi and Finnish, with no code changes required.</p>
+        </td>
+        <td class="meta">
+          <span class="source">AWS Machine Learning</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">22 Oct</td>
+      </tr>
+      <tr data-section="ai" data-haystack="how specializing the vocabulary of slms can cut inference cost by 77% in real applications specializing the vocabulary of small language models is reported to cut inference cost by 77 percent in real applications. hugging face">
+        <td class="topic">
+          <a class="title" href="https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization" target="_blank" rel="noopener noreferrer">How Specializing the Vocabulary of SLMs Can Cut Inference Cost by 77% in Real Applications</a>
+          <p class="summary">Specializing the vocabulary of small language models is reported to cut inference cost by 77 percent in real applications.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Hugging Face</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">21 Oct</td>
+      </tr>
+      <tr data-section="dev" data-haystack="introducing tsrs: a port of typescript to rust cloudflare is collaborating on tsrs, a rust port of typescript that is up to 8x faster and uses 70 percent less memory, which could shorten type-check and build times on large projects. cloudflare">
+        <td class="topic">
+          <a class="title" href="https://blog.cloudflare.com/typescript-rust-port/" target="_blank" rel="noopener noreferrer">Introducing tsrs: A port of TypeScript to Rust</a>
+          <p class="summary">Cloudflare is collaborating on tsrs, a Rust port of TypeScript that is up to 8x faster and uses 70 percent less memory, which could shorten type-check and build times on large projects.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Cloudflare</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">20 Oct</td>
+      </tr>
+      <tr data-section="dev" data-haystack="how commerce.com and cloudflare are getting storefronts ready for ai agents almost 100,000 commerce.com storefronts now expose shopping tools to ai agents through webmcp on cloudflare, with merchants keeping control, a pattern that is relevant to agent-ready ecommerce sites. cloudflare">
+        <td class="topic">
+          <a class="title" href="https://blog.cloudflare.com/webmcp-commerce/" target="_blank" rel="noopener noreferrer">How Commerce.com and Cloudflare are getting storefronts ready for AI agents</a>
+          <p class="summary">Almost 100,000 Commerce.com storefronts now expose shopping tools to AI agents through WebMCP on Cloudflare, with merchants keeping control, a pattern that is relevant to agent-ready ecommerce sites.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Cloudflare</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">21 Oct</td>
+      </tr>
+      <tr data-section="dev" data-haystack="the bridge to agent-scale git infrastructure github has moved a copy of 99.99999 percent of its repositories to azure and describes how per-reference quorums and object storage will carry the rest and scale reads to handle agent-level traffic. github">
+        <td class="topic">
+          <a class="title" href="https://github.blog/engineering/architecture-optimization/the-bridge-to-agent-scale-git-infrastructure/" target="_blank" rel="noopener noreferrer">The bridge to agent-scale Git infrastructure</a>
+          <p class="summary">GitHub has moved a copy of 99.99999 percent of its repositories to Azure and describes how per-reference quorums and object storage will carry the rest and scale reads to handle agent-level traffic.</p>
+        </td>
+        <td class="meta">
+          <span class="source">GitHub</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">21 Oct</td>
+      </tr>
+      <tr data-section="dev" data-haystack="how to continue a github copilot app session in vs code an agent session started in the github copilot app can now be continued in vs code with its conversation, code changes and working context intact. github">
+        <td class="topic">
+          <a class="title" href="https://github.blog/ai-and-ml/github-copilot/how-to-continue-a-github-copilot-app-session-in-vs-code/" target="_blank" rel="noopener noreferrer">How to continue a GitHub Copilot app session in VS Code</a>
+          <p class="summary">An agent session started in the GitHub Copilot app can now be continued in VS Code with its conversation, code changes and working context intact.</p>
+        </td>
+        <td class="meta">
+          <span class="source">GitHub</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">20 Oct</td>
+      </tr>
+      <tr data-section="dev" data-haystack="copilot triage: ai issue and pull request triage for github copilot triage is an open source github action that sorts issues, discussions and pull requests onto a project board by what the maintainer needs to do next, using read-only tools. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://paolino.me/copilot-triage" target="_blank" rel="noopener noreferrer">Copilot Triage: AI Issue and Pull Request Triage for GitHub</a>
+          <p class="summary">Copilot Triage is an open source GitHub Action that sorts issues, discussions and pull requests onto a project board by what the maintainer needs to do next, using read-only tools.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">23 Oct</td>
+      </tr>
+      <tr data-section="dev" data-haystack="ngrx 22: resource extensions and dynamic deep signals for angular ngrx 22 adds experimental resource extensions for angular that keep a resource value during reloads instead of resetting to undefined and no longer throw when read in an error state. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://www.infoq.com/news/2026/10/ngrx-22-angular" target="_blank" rel="noopener noreferrer">NgRx 22: Resource Extensions and Dynamic Deep Signals for Angular</a>
+          <p class="summary">NgRx 22 adds experimental resource extensions for Angular that keep a resource value during reloads instead of resetting to undefined and no longer throw when read in an error state.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">23 Oct</td>
+      </tr>
+      <tr data-section="dev" data-haystack="comparing the best node.js unit testing frameworks a side-by-side comparison of mocha, jest, vitest and the built-in node.js test runner using equivalent typescript examples, noting vitest usage growing while jest remains the most used. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://blog.logrocket.com/comparing-best-node-js-unit-testing-frameworks" target="_blank" rel="noopener noreferrer">Comparing the best Node.js unit testing frameworks</a>
+          <p class="summary">A side-by-side comparison of Mocha, Jest, Vitest and the built-in Node.js test runner using equivalent TypeScript examples, noting Vitest usage growing while Jest remains the most used.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">23 Oct</td>
+      </tr>
+      <tr data-section="dev" data-haystack="vercel’s vgpu: a webgpu library built for ai agents vercel&#x27;s vgpu library wraps raw webgpu into contexts, reactive bindings and frame loops, installs with npm, and includes a doctor command to check host compatibility, with a next.js shader example. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://blog.logrocket.com/vercel-vgpu-webgpu-ai-agents" target="_blank" rel="noopener noreferrer">Vercel’s vgpu: A WebGPU library built for AI agents</a>
+          <p class="summary">Vercel&#x27;s vgpu library wraps raw WebGPU into contexts, reactive bindings and frame loops, installs with npm, and includes a doctor command to check host compatibility, with a Next.js shader example.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">23 Oct</td>
+      </tr>
+      <tr data-section="dev" data-haystack="allocating off-heap memory: typically 6-18x faster in jdk 28 jdk 28 makes small off-heap allocations through the foreign function and memory api typically 6 to 18 times faster, with no source code changes needed. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://inside.java/2026/10/23/confined-pools" target="_blank" rel="noopener noreferrer">Allocating Off-Heap Memory: Typically 6-18x Faster in JDK 28</a>
+          <p class="summary">JDK 28 makes small off-heap allocations through the Foreign Function and Memory API typically 6 to 18 times faster, with no source code changes needed.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">23 Oct</td>
+      </tr>
+      <tr data-section="dev" data-haystack="what is octanejs? a compiler-first alternative to react octane is an ahead-of-time compiled javascript framework that keeps react&#x27;s component and hooks model but replaces the virtual dom with compiler-generated direct dom updates. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://blog.logrocket.com/octanejs-compiler-first-react-alternative" target="_blank" rel="noopener noreferrer">What is OctaneJS? A compiler-first alternative to React</a>
+          <p class="summary">Octane is an ahead-of-time compiled JavaScript framework that keeps React&#x27;s component and hooks model but replaces the virtual DOM with compiler-generated direct DOM updates.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">23 Oct</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="empty" id="empty">No updates match that filter.</div>
+  </div>
+
+  <footer>
+    <span>41 updates</span>
+    <span>Covering updates since 18 Oct, 15:08 IST</span>
+    <span>Every title links to its original source</span>
+  </footer>
+</div>
+<script>
+(function () {
+  var rows   = Array.prototype.slice.call(document.querySelectorAll('tbody tr'));
+  var chips  = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var search = document.getElementById('search');
+  var empty  = document.getElementById('empty');
+  var active = 'all';
+
+  function apply() {
+    var q = (search.value || '').trim().toLowerCase();
+    var shown = 0;
+    rows.forEach(function (row) {
+      var okSection = active === 'all' || row.dataset.section === active;
+      var okText = !q || row.dataset.haystack.indexOf(q) !== -1;
+      var show = okSection && okText;
+      row.hidden = !show;
+      if (show) shown++;
+    });
+    empty.classList.toggle('show', shown === 0);
+  }
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      active = chip.dataset.filter;
+      chips.forEach(function (c) {
+        c.setAttribute('aria-pressed', String(c === chip));
+      });
+      apply();
+    });
+  });
+
+  search.addEventListener('input', apply);
+})();
+</script>
+</body>
+</html>
