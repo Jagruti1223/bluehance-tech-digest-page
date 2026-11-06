@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Tech Update - 06 Nov 2026</title>
+<meta name="description" content="Daily AI, developer tooling and Wix platform updates for the Bluehance 360 engineering team.">
+<!-- The page is served from a public repo so GitHub Pages can host it without a
+     paid plan. The content is public tech news, but it carries the company name,
+     so keep it out of search results: the link is meant for the team, not the web. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --paper:      #f7f8fa;
+  --surface:    #ffffff;
+  --surface-2:  #eef1f5;
+  --ink:        #10161d;
+  --ink-soft:   #47535f;
+  --muted:      #6b7785;
+  --rule:       #dde3ea;
+  --accent:     #1f5c9e;
+  --accent-lit: #6fa8dc;
+  --flag:       #b4531f;
+  --wix:        #1f5c9e;
+  --ai:         #4a6f8a;
+  --dev:        #5a7d5a;
+  --shadow:     0 1px 2px rgba(16,22,29,.06), 0 8px 24px -16px rgba(16,22,29,.28);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:      #0d1218;
+    --surface:    #141b23;
+    --surface-2:  #1c242e;
+    --ink:        #e8edf3;
+    --ink-soft:   #b3bfcb;
+    --muted:      #8593a1;
+    --rule:       #26313d;
+    --accent:     #7fb2e5;
+    --accent-lit: #a8cdf0;
+    --flag:       #e08a52;
+    --wix:        #7fb2e5;
+    --ai:         #93b4cc;
+    --dev:        #93b893;
+    --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"] {
+  --paper:      #0d1218;
+  --surface:    #141b23;
+  --surface-2:  #1c242e;
+  --ink:        #e8edf3;
+  --ink-soft:   #b3bfcb;
+  --muted:      #8593a1;
+  --rule:       #26313d;
+  --accent:     #7fb2e5;
+  --accent-lit: #a8cdf0;
+  --flag:       #e08a52;
+  --wix:        #7fb2e5;
+  --ai:         #93b4cc;
+  --dev:        #93b893;
+  --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 24px 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* --- masthead --- */
+.masthead { display: flex; flex-direction: column; gap: 10px; }
+
+.eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.archive-link {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  align-self: flex-start;
+  padding-bottom: 2px;
+}
+.archive-link:hover { color: var(--ink); }
+
+h1 {
+  font-family: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.dateline {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 15px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+/* --- controls --- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.chip {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background .12s ease, color .12s ease, border-color .12s ease;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--surface);
+}
+:root[data-theme="dark"] .chip[aria-pressed="true"],
+:root:not([data-theme="light"]) .chip[aria-pressed="true"] { color: #0d1218; }
+
+.chip .n {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  opacity: .7;
+  margin-left: 5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.search {
+  flex: 1 1 200px;
+  min-width: 180px;
+  margin-left: auto;
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  color: var(--ink);
+}
+.search::placeholder { color: var(--muted); }
+.search:focus-visible, .chip:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --- table --- */
+.table-scroll { overflow-x: auto; }
+
+table { width: 100%; border-collapse: collapse; }
+
+thead th {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  text-align: left;
+  padding: 0 14px 10px;
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--rule);
+  transition: background .12s ease;
+}
+tbody tr:hover { background: var(--surface); }
+
+tbody td { padding: 16px 14px; vertical-align: top; }
+
+/* Section identity lives in a left stripe rather than another badge column. */
+td.topic { border-left: 3px solid transparent; }
+tr[data-section="wix"] td.topic { border-left-color: var(--wix); }
+tr[data-section="ai"]  td.topic { border-left-color: var(--ai); }
+tr[data-section="dev"] td.topic { border-left-color: var(--dev); }
+
+.title {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.32;
+  letter-spacing: -.005em;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-block;
+}
+.title:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+.summary {
+  margin: 5px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+.flag {
+  display: inline-block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--flag);
+  border: 1px solid var(--flag);
+  border-radius: 3px;
+  padding: 1px 5px;
+  margin-right: 7px;
+  vertical-align: 2px;
+}
+
+td.meta { white-space: nowrap; }
+
+.source {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.section-tag {
+  display: block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+td.date {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.empty {
+  display: none;
+  padding: 40px 14px;
+  text-align: center;
+  color: var(--muted);
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 14px;
+}
+.empty.show { display: block; }
+
+footer {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: .04em;
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+}
+
+/* Stack the table into cards on narrow screens rather than scrolling it. */
+@media (max-width: 640px) {
+  .wrap { padding: 28px 16px 56px; }
+  thead { display: none; }
+  tbody tr { display: block; padding: 4px 0 10px; }
+  tbody td { display: block; padding: 4px 14px; }
+  td.topic { padding-top: 12px; }
+  td.meta, td.date { padding-top: 0; }
+  td.date { padding-bottom: 12px; }
+  .section-tag { display: inline; margin-left: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="eyebrow">Bluehance 360 &middot; Engineering</div>
+    <h1>Daily Tech Update</h1>
+    <div class="dateline">Friday, 06 November 2026</div>
+    <a class="archive-link" href="https://jagruti1223.github.io/bluehance-tech-digest-page/archive/">Previous days</a>
+  </header>
+
+  <div class="controls">
+    <div class="chips">
+      <button class="chip" data-filter="all" aria-pressed="true">All<span class="n">21</span></button><button class="chip" data-filter="ai" aria-pressed="false">AI &amp; Models<span class="n">11</span></button><button class="chip" data-filter="dev" aria-pressed="false">Dev Tools<span class="n">10</span></button>
+    </div>
+    <input id="search" class="search" type="search" placeholder="Search titles, sources, summaries"
+           autocomplete="off" aria-label="Search updates">
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Topic</th>
+          <th scope="col">Source</th>
+          <th scope="col">Published</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr data-section="ai" data-haystack="introducing images 2.6 openai released images 2.6 with faster generation, gif creation, more precise editing and new api controls available in chatgpt, codex and the api. openai">
+        <td class="topic">
+          <a class="title" href="https://openai.com/index/introducing-images-2-6" target="_blank" rel="noopener noreferrer">Introducing Images 2.6</a>
+          <p class="summary">OpenAI released Images 2.6 with faster generation, GIF creation, more precise editing and new API controls available in ChatGPT, Codex and the API.</p>
+        </td>
+        <td class="meta">
+          <span class="source">OpenAI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">04 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="gemini omni 1.2 flash: fast and cost-effective with longer clips google released gemini omni 1.2 flash, a faster and cheaper model that supports longer generated clips. google ai">
+        <td class="topic">
+          <a class="title" href="https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/" target="_blank" rel="noopener noreferrer">Gemini Omni 1.2 Flash: Fast and cost-effective with longer clips</a>
+          <p class="summary">Google released Gemini Omni 1.2 Flash, a faster and cheaper model that supports longer generated clips.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Google AI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">05 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="perplexity launches its own take on ai agents for work perplexity launched always-on teammates agents that take on multiple roles in a workspace and pull in existing projects, skills and memory from its other tools. the verge ai">
+        <td class="topic">
+          <a class="title" href="https://www.theverge.com/ai-artificial-intelligence/1028302/perplexity-teammates-ai-agents-work" target="_blank" rel="noopener noreferrer">Perplexity launches its own take on AI agents for work</a>
+          <p class="summary">Perplexity launched always-on Teammates agents that take on multiple roles in a workspace and pull in existing projects, skills and memory from its other tools.</p>
+        </td>
+        <td class="meta">
+          <span class="source">The Verge AI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">06 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="new nvidia cosmos 3 open models for interactive world simulation nvidia released cosmos 3 open models for interactive world simulation, available through hugging face. hugging face">
+        <td class="topic">
+          <a class="title" href="https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation" target="_blank" rel="noopener noreferrer">New NVIDIA Cosmos 3 Open Models for Interactive World Simulation</a>
+          <p class="summary">NVIDIA released Cosmos 3 open models for interactive world simulation, available through Hugging Face.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Hugging Face</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">06 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="a closer look at phonon tts. launching high-quality on-device speech that tops the benchmarks. phonon tts is a new on-device text-to-speech model that reports top benchmark results, making local speech features without a cloud api more practical. hugging face">
+        <td class="topic">
+          <a class="title" href="https://huggingface.co/blog/phonon-tts" target="_blank" rel="noopener noreferrer">A Closer Look at Phonon TTS. Launching High-Quality On-Device Speech That Tops the Benchmarks.</a>
+          <p class="summary">Phonon TTS is a new on-device text-to-speech model that reports top benchmark results, making local speech features without a cloud API more practical.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Hugging Face</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">05 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="claude ai can plug directly into your bank account anthropic added a personal finance feature that connects claude to bank and card accounts through plaid so it can answer questions about spending. the verge ai">
+        <td class="topic">
+          <a class="title" href="https://www.theverge.com/ai-artificial-intelligence/1027652/anthropic-claude-plaid-personal-finance" target="_blank" rel="noopener noreferrer">Claude AI can plug directly into your bank account</a>
+          <p class="summary">Anthropic added a Personal Finance feature that connects Claude to bank and card accounts through Plaid so it can answer questions about spending.</p>
+        </td>
+        <td class="meta">
+          <span class="source">The Verge AI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">05 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="muse has a voice mode now meta added real-time voice conversations with its muse ai agent, rolling out in the ios app. the verge ai">
+        <td class="topic">
+          <a class="title" href="https://www.theverge.com/tech/1028015/meta-muse-ai-voice-mode-expressive-avatar" target="_blank" rel="noopener noreferrer">Muse has a voice mode now</a>
+          <p class="summary">Meta added real-time voice conversations with its Muse AI agent, rolling out in the iOS app.</p>
+        </td>
+        <td class="meta">
+          <span class="source">The Verge AI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">06 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="four layers of context engineering for production ai agents: how deep insight applies them in working code a four-layer context engineering framework covering architecture, prompts, file-based tools and verification agents is shown in working open source code for production multi-agent systems. aws machine learning">
+        <td class="topic">
+          <a class="title" href="https://aws.amazon.com/blogs/machine-learning/four-layers-of-context-engineering-for-production-ai-agents-how-deep-insight-applies-them-in-working-code/" target="_blank" rel="noopener noreferrer">Four layers of context engineering for production AI agents: How Deep Insight applies them in working code</a>
+          <p class="summary">A four-layer context engineering framework covering architecture, prompts, file-based tools and verification agents is shown in working open source code for production multi-agent systems.</p>
+        </td>
+        <td class="meta">
+          <span class="source">AWS Machine Learning</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">04 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="egyptian and nigerian english join the open asr leaderboard egyptian and nigerian english were added to the open asr leaderboard, giving a way to compare speech recognition models on those accents. hugging face">
+        <td class="topic">
+          <a class="title" href="https://huggingface.co/blog/open-asr-leaderboard-liva" target="_blank" rel="noopener noreferrer">Egyptian and Nigerian English join the Open ASR Leaderboard</a>
+          <p class="summary">Egyptian and Nigerian English were added to the Open ASR Leaderboard, giving a way to compare speech recognition models on those accents.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Hugging Face</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">06 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="vera delivers the best of both worlds: highest throughput and fastest agents nvidia positions its vera cpu as the way to speed up the cpu-side steps of ai agents such as search, database queries and code testing. nvidia">
+        <td class="topic">
+          <a class="title" href="https://blogs.nvidia.com/blog/vera-cpu-highest-throughput-fastest-agents/" target="_blank" rel="noopener noreferrer">Vera Delivers the Best of Both Worlds: Highest Throughput and Fastest Agents</a>
+          <p class="summary">NVIDIA positions its Vera CPU as the way to speed up the CPU-side steps of AI agents such as search, database queries and code testing.</p>
+        </td>
+        <td class="meta">
+          <span class="source">NVIDIA</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">06 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="lifeval openai introduced lifeval, a benchmark that measures how well ai assistants complete everyday tasks like finding childcare, managing finances and handling government paperwork. openai">
+        <td class="topic">
+          <a class="title" href="https://openai.com/index/lifeval" target="_blank" rel="noopener noreferrer">LifeVal</a>
+          <p class="summary">OpenAI introduced LifeVal, a benchmark that measures how well AI assistants complete everyday tasks like finding childcare, managing finances and handling government paperwork.</p>
+        </td>
+        <td class="meta">
+          <span class="source">OpenAI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">02 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="typescript 7.1 beta: restores the compiler api and makes vue and svelte first-class typescript 7.1 beta restores the compiler api dropped in 7.0 via new entry points like typescript/sync and typescript/ast, and adds content mappers so tooling can handle .vue and svelte files. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://www.infoq.com/news/2026/11/typescript-7-1-beta" target="_blank" rel="noopener noreferrer">TypeScript 7.1 Beta: Restores the Compiler API and Makes Vue and Svelte First-Class</a>
+          <p class="summary">TypeScript 7.1 Beta restores the compiler API dropped in 7.0 via new entry points like typescript/sync and typescript/ast, and adds content mappers so tooling can handle .vue and Svelte files.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">06 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="gitlab 19.5 makes agentic development a governed part of the devops platform gitlab 19.5 makes its mcp server generally available, so tools like claude code and cursor can use gitlab&#x27;s tool catalogue and trigger duo agents, with new governance controls for external agents. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://www.infoq.com/news/2026/11/gitlab-19-5-agentic-platform" target="_blank" rel="noopener noreferrer">GitLab 19.5 Makes Agentic Development a Governed Part of the DevOps Platform</a>
+          <p class="summary">GitLab 19.5 makes its MCP server generally available, so tools like Claude Code and Cursor can use GitLab&#x27;s tool catalogue and trigger Duo agents, with new governance controls for external agents.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">06 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="inside github’s new git storage architecture github detailed a new git storage architecture designed to let thousands of agents push to one repository concurrently, which affects how heavily automated repos will behave. github">
+        <td class="topic">
+          <a class="title" href="https://github.blog/engineering/architecture-optimization/inside-githubs-new-git-storage-architecture/" target="_blank" rel="noopener noreferrer">Inside GitHub’s new Git storage architecture</a>
+          <p class="summary">GitHub detailed a new Git storage architecture designed to let thousands of agents push to one repository concurrently, which affects how heavily automated repos will behave.</p>
+        </td>
+        <td class="meta">
+          <span class="source">GitHub</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">06 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="see the agents, set the terms: new visibility and control for personal agents cloudflare added visibility and controls for site owners to see and manage traffic from personal ai agents, separating it from human and bot traffic. cloudflare">
+        <td class="topic">
+          <a class="title" href="https://blog.cloudflare.com/personal-agents-visibility-control/" target="_blank" rel="noopener noreferrer">See the agents, set the terms: new visibility and control for personal agents</a>
+          <p class="summary">Cloudflare added visibility and controls for site owners to see and manage traffic from personal AI agents, separating it from human and bot traffic.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Cloudflare</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">04 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="accessibility statements now have a home on github github now highlights accessibility.md files in repositories, giving maintainers a standard place to document accessibility goals, known barriers and reporting processes. github">
+        <td class="topic">
+          <a class="title" href="https://github.blog/open-source/maintainers/accessibility-statements-now-have-a-home-on-github/" target="_blank" rel="noopener noreferrer">Accessibility statements now have a home on GitHub</a>
+          <p class="summary">GitHub now highlights ACCESSIBILITY.md files in repositories, giving maintainers a standard place to document accessibility goals, known barriers and reporting processes.</p>
+        </td>
+        <td class="meta">
+          <span class="source">GitHub</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">05 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="reflections from tpac 2026 w3c&#x27;s tpac 2026 reached broad consensus to form a new agentic web working group, signalling upcoming standards work on how ai agents interact with websites. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://hidde.blog/tpac-2026" target="_blank" rel="noopener noreferrer">Reflections from TPAC 2026</a>
+          <p class="summary">W3C&#x27;s TPAC 2026 reached broad consensus to form a new Agentic Web Working Group, signalling upcoming standards work on how AI agents interact with websites.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">06 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="prepare web content for amazon bedrock knowledge bases with crawl4ai a walkthrough shows using the open source crawl4ai crawler to render javascript, extract selectively and add metadata before loading web content into amazon bedrock knowledge bases. aws machine learning">
+        <td class="topic">
+          <a class="title" href="https://aws.amazon.com/blogs/machine-learning/prepare-web-content-for-amazon-bedrock-knowledge-bases-with-crawl4ai/" target="_blank" rel="noopener noreferrer">Prepare web content for Amazon Bedrock Knowledge Bases with Crawl4AI</a>
+          <p class="summary">A walkthrough shows using the open source Crawl4AI crawler to render JavaScript, extract selectively and add metadata before loading web content into Amazon Bedrock Knowledge Bases.</p>
+        </td>
+        <td class="meta">
+          <span class="source">AWS Machine Learning</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">02 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="servicenow on-behalf-of token exchange with bedrock agentcore gateway amazon bedrock agentcore gateway can now do native on-behalf-of token exchange with microsoft entra id so agents call the servicenow rest api as the calling user. aws machine learning">
+        <td class="topic">
+          <a class="title" href="https://aws.amazon.com/blogs/machine-learning/servicenow-on-behalf-of-token-exchange-with-bedrock-agentcore-gateway/" target="_blank" rel="noopener noreferrer">ServiceNow on-behalf-of token exchange with Bedrock AgentCore Gateway</a>
+          <p class="summary">Amazon Bedrock AgentCore Gateway can now do native on-behalf-of token exchange with Microsoft Entra ID so agents call the ServiceNow REST API as the calling user.</p>
+        </td>
+        <td class="meta">
+          <span class="source">AWS Machine Learning</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">03 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="faster llm inference startup: what you need to know vllm and sglang are both building weight-cache daemons that keep processed model weights in gpu memory to cut slow cold starts when launching new inference replicas. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://www.cncf.io/blog/2026/11/06/faster-llm-inference-startup-what-you-need-to-know" target="_blank" rel="noopener noreferrer">Faster LLM inference startup: What you need to know</a>
+          <p class="summary">vLLM and SGLang are both building weight-cache daemons that keep processed model weights in GPU memory to cut slow cold starts when launching new inference replicas.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">06 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="entire quixel megascans library now available for free the full quixel megascans library of about 23,000 scanned 3d assets is now permanently free on fab, useful for 3d web and webgl projects. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://80.lv/articles/entire-quixel-megascans-library-now-available-for-free" target="_blank" rel="noopener noreferrer">Entire Quixel Megascans Library Now Available For Free</a>
+          <p class="summary">The full Quixel Megascans library of about 23,000 scanned 3D assets is now permanently free on Fab, useful for 3D web and WebGL projects.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">06 Nov</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="empty" id="empty">No updates match that filter.</div>
+  </div>
+
+  <footer>
+    <span>21 updates</span>
+    <span>Covering updates since 01 Nov, 18:01 IST</span>
+    <span>Every title links to its original source</span>
+  </footer>
+</div>
+<script>
+(function () {
+  var rows   = Array.prototype.slice.call(document.querySelectorAll('tbody tr'));
+  var chips  = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var search = document.getElementById('search');
+  var empty  = document.getElementById('empty');
+  var active = 'all';
+
+  function apply() {
+    var q = (search.value || '').trim().toLowerCase();
+    var shown = 0;
+    rows.forEach(function (row) {
+      var okSection = active === 'all' || row.dataset.section === active;
+      var okText = !q || row.dataset.haystack.indexOf(q) !== -1;
+      var show = okSection && okText;
+      row.hidden = !show;
+      if (show) shown++;
+    });
+    empty.classList.toggle('show', shown === 0);
+  }
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      active = chip.dataset.filter;
+      chips.forEach(function (c) {
+        c.setAttribute('aria-pressed', String(c === chip));
+      });
+      apply();
+    });
+  });
+
+  search.addEventListener('input', apply);
+})();
+</script>
+</body>
+</html>
