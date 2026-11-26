@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Tech Update - 26 Nov 2026</title>
+<meta name="description" content="Daily AI, developer tooling and Wix platform updates for the Bluehance 360 engineering team.">
+<!-- The page is served from a public repo so GitHub Pages can host it without a
+     paid plan. The content is public tech news, but it carries the company name,
+     so keep it out of search results: the link is meant for the team, not the web. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --paper:      #f7f8fa;
+  --surface:    #ffffff;
+  --surface-2:  #eef1f5;
+  --ink:        #10161d;
+  --ink-soft:   #47535f;
+  --muted:      #6b7785;
+  --rule:       #dde3ea;
+  --accent:     #1f5c9e;
+  --accent-lit: #6fa8dc;
+  --flag:       #b4531f;
+  --wix:        #1f5c9e;
+  --ai:         #4a6f8a;
+  --dev:        #5a7d5a;
+  --shadow:     0 1px 2px rgba(16,22,29,.06), 0 8px 24px -16px rgba(16,22,29,.28);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:      #0d1218;
+    --surface:    #141b23;
+    --surface-2:  #1c242e;
+    --ink:        #e8edf3;
+    --ink-soft:   #b3bfcb;
+    --muted:      #8593a1;
+    --rule:       #26313d;
+    --accent:     #7fb2e5;
+    --accent-lit: #a8cdf0;
+    --flag:       #e08a52;
+    --wix:        #7fb2e5;
+    --ai:         #93b4cc;
+    --dev:        #93b893;
+    --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"] {
+  --paper:      #0d1218;
+  --surface:    #141b23;
+  --surface-2:  #1c242e;
+  --ink:        #e8edf3;
+  --ink-soft:   #b3bfcb;
+  --muted:      #8593a1;
+  --rule:       #26313d;
+  --accent:     #7fb2e5;
+  --accent-lit: #a8cdf0;
+  --flag:       #e08a52;
+  --wix:        #7fb2e5;
+  --ai:         #93b4cc;
+  --dev:        #93b893;
+  --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 24px 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* --- masthead --- */
+.masthead { display: flex; flex-direction: column; gap: 10px; }
+
+.eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.archive-link {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  align-self: flex-start;
+  padding-bottom: 2px;
+}
+.archive-link:hover { color: var(--ink); }
+
+h1 {
+  font-family: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.dateline {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 15px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+/* --- controls --- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.chip {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background .12s ease, color .12s ease, border-color .12s ease;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--surface);
+}
+:root[data-theme="dark"] .chip[aria-pressed="true"],
+:root:not([data-theme="light"]) .chip[aria-pressed="true"] { color: #0d1218; }
+
+.chip .n {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  opacity: .7;
+  margin-left: 5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.search {
+  flex: 1 1 200px;
+  min-width: 180px;
+  margin-left: auto;
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  color: var(--ink);
+}
+.search::placeholder { color: var(--muted); }
+.search:focus-visible, .chip:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --- table --- */
+.table-scroll { overflow-x: auto; }
+
+table { width: 100%; border-collapse: collapse; }
+
+thead th {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  text-align: left;
+  padding: 0 14px 10px;
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--rule);
+  transition: background .12s ease;
+}
+tbody tr:hover { background: var(--surface); }
+
+tbody td { padding: 16px 14px; vertical-align: top; }
+
+/* Section identity lives in a left stripe rather than another badge column. */
+td.topic { border-left: 3px solid transparent; }
+tr[data-section="wix"] td.topic { border-left-color: var(--wix); }
+tr[data-section="ai"]  td.topic { border-left-color: var(--ai); }
+tr[data-section="dev"] td.topic { border-left-color: var(--dev); }
+
+.title {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.32;
+  letter-spacing: -.005em;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-block;
+}
+.title:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+.summary {
+  margin: 5px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+.flag {
+  display: inline-block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--flag);
+  border: 1px solid var(--flag);
+  border-radius: 3px;
+  padding: 1px 5px;
+  margin-right: 7px;
+  vertical-align: 2px;
+}
+
+td.meta { white-space: nowrap; }
+
+.source {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.section-tag {
+  display: block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+td.date {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.empty {
+  display: none;
+  padding: 40px 14px;
+  text-align: center;
+  color: var(--muted);
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 14px;
+}
+.empty.show { display: block; }
+
+footer {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: .04em;
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+}
+
+/* Stack the table into cards on narrow screens rather than scrolling it. */
+@media (max-width: 640px) {
+  .wrap { padding: 28px 16px 56px; }
+  thead { display: none; }
+  tbody tr { display: block; padding: 4px 0 10px; }
+  tbody td { display: block; padding: 4px 14px; }
+  td.topic { padding-top: 12px; }
+  td.meta, td.date { padding-top: 0; }
+  td.date { padding-bottom: 12px; }
+  .section-tag { display: inline; margin-left: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="eyebrow">Bluehance 360 &middot; Engineering</div>
+    <h1>Daily Tech Update</h1>
+    <div class="dateline">Thursday, 26 November 2026</div>
+    <a class="archive-link" href="https://jagruti1223.github.io/bluehance-tech-digest-page/archive/">Previous days</a>
+  </header>
+
+  <div class="controls">
+    <div class="chips">
+      <button class="chip" data-filter="all" aria-pressed="true">All<span class="n">43</span></button><button class="chip" data-filter="wix" aria-pressed="false">Wix<span class="n">22</span></button><button class="chip" data-filter="ai" aria-pressed="false">AI &amp; Models<span class="n">12</span></button><button class="chip" data-filter="dev" aria-pressed="false">Dev Tools<span class="n">9</span></button>
+    </div>
+    <input id="search" class="search" type="search" placeholder="Search titles, sources, summaries"
+           autocomplete="off" aria-label="Search updates">
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Topic</th>
+          <th scope="col">Source</th>
+          <th scope="col">Published</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr data-section="wix" data-haystack="deprecated method: ai site-chat messages bulk get by inbox messages (version 1.0.67) the bulk get by inbox messages method in the ai site-chat messages api will be deprecated on december 12, 2026. wix developer changelog">
+        <td class="topic">
+          <span class="flag">Deprecated</span><a class="title" href="https://dev.wix.com/docs/api-reference/business-management/ai-site-chat/messages" target="_blank" rel="noopener noreferrer">Deprecated method: AI Site-Chat Messages Bulk Get By Inbox Messages (Version 1.0.67)</a>
+          <p class="summary">The Bulk Get By Inbox Messages method in the AI Site-Chat Messages API will be deprecated on December 12, 2026.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">13 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="deprecated method: business email google subscription v1 api resolve business email action (version 1.0.16) the resolve business email action method in the google subscription v1 api will be deprecated on december 7, 2026. wix developer changelog">
+        <td class="topic">
+          <span class="flag">Deprecated</span><a class="title" href="https://dev.wix.com/docs/api-reference/account-level/premium/business-email/google-subscription-v1/resolve-business-email-action" target="_blank" rel="noopener noreferrer">Deprecated method: Business Email Google Subscription V1 API Resolve Business Email Action (Version 1.0.16)</a>
+          <p class="summary">The Resolve Business Email Action method in the Google Subscription V1 API will be deprecated on December 7, 2026.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">25 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="fully released: ai site-chat messages and widget settings v2 api methods (version 1.0.67) the media attachment upload url method in the ai site-chat messages api and the get widget settings and update widget settings methods in the ai site-chat widget settings v2 api are no longer in developer preview. this means they aren&#x27;t... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-management/ai-site-chat/messages/media-attachment-upload-url" target="_blank" rel="noopener noreferrer">Fully released: AI Site-Chat Messages and Widget Settings V2 API methods (Version 1.0.67)</a>
+          <p class="summary">The Media Attachment Upload Url method in the AI Site-Chat Messages API and the Get Widget Settings and Update Widget Settings methods in the AI Site-Chat Widget Settings V2 API are no longer in Developer Preview. This means they aren&#x27;t...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">13 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="fully released: data items v2 api methods the async patch data items by filter , async remove data items by filter , and get async job status methods in the data items v2 api are no longer in developer preview. this means they aren&#x27;t subject to breaking changes and can be used in... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-solutions/cms/data-items" target="_blank" rel="noopener noreferrer">Fully released: Data Items V2 API methods</a>
+          <p class="summary">The Async Patch Data Items By Filter , Async Remove Data Items By Filter , and Get Async Job Status methods in the Data Items V2 API are no longer in Developer Preview. This means they aren&#x27;t subject to breaking changes and can be used in...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">25 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="fully released: menu ordering settings v1 api events (version 1.0.549) the menu ordering settings created , menu ordering settings deleted , and menu ordering settings updated events in the menu ordering settings v1 api are no longer in developer preview. this means they aren&#x27;t subject to breaking changes and... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-solutions/restaurants/online-orders/menu-ordering-settings" target="_blank" rel="noopener noreferrer">Fully released: Menu Ordering Settings V1 API events (Version 1.0.549)</a>
+          <p class="summary">The Menu Ordering Settings Created , Menu Ordering Settings Deleted , and Menu Ordering Settings Updated events in the Menu Ordering Settings V1 API are no longer in Developer Preview. This means they aren&#x27;t subject to breaking changes and...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">20 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="fully released: restaurants fulfillment method v1 api (version 1.0.549) the restaurants fulfillment method v1 api is no longer in developer preview. this means it isn&#x27;t subject to breaking changes and can be used in production. wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-solutions/restaurants/online-orders/fulfillment-methods" target="_blank" rel="noopener noreferrer">Fully released: Restaurants Fulfillment Method V1 API (Version 1.0.549)</a>
+          <p class="summary">The Restaurants Fulfillment Method V1 API is no longer in Developer Preview. This means it isn&#x27;t subject to breaking changes and can be used in production.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">20 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="fully released: restaurants operations v1 api (version 1.0.546) the restaurants operations v1 api is no longer in developer preview. this means it isn&#x27;t subject to breaking changes and can be used in production. wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-solutions/restaurants/online-orders/operations" target="_blank" rel="noopener noreferrer">Fully released: Restaurants Operations V1 API (Version 1.0.546)</a>
+          <p class="summary">The Restaurants Operations V1 API is no longer in Developer Preview. This means it isn&#x27;t subject to breaking changes and can be used in production.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">19 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="fully released: restaurants recipient v1 api events (version 1.0.548) the recipient created , recipient deleted , and recipient updated events in the restaurants recipient v1 api are no longer in developer preview. this means they aren&#x27;t subject to breaking changes and can be used in production. wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-solutions/restaurants/online-orders/notification-recipients" target="_blank" rel="noopener noreferrer">Fully released: Restaurants Recipient V1 API events (Version 1.0.548)</a>
+          <p class="summary">The Recipient Created , Recipient Deleted , and Recipient Updated events in the Restaurants Recipient V1 API are no longer in Developer Preview. This means they aren&#x27;t subject to breaking changes and can be used in production.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">19 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="fully released: restaurants service fees rules api (version 1.0.547) the restaurants service fees rules api is no longer in developer preview. this means it isn&#x27;t subject to breaking changes and can be used in production. wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-solutions/restaurants/online-orders/service-fees/rules" target="_blank" rel="noopener noreferrer">Fully released: Restaurants Service Fees Rules API (Version 1.0.547)</a>
+          <p class="summary">The Restaurants Service Fees Rules API is no longer in Developer Preview. This means it isn&#x27;t subject to breaking changes and can be used in production.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">19 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new feature: overnight stays, pricing tiers, and additional fees in wix rentals (version 1.0.1811) you can now set up wix rentals services with fixed check-in and check-out times for overnight stays, pricing tiers that vary the rate by rental length or dates, and additional fees such as a cleaning fee. these settings are configured on... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-solutions/rentals/wix-rentals-and-the-bookings-apis" target="_blank" rel="noopener noreferrer">New feature: Overnight stays, pricing tiers, and additional fees in Wix Rentals (Version 1.0.1811)</a>
+          <p class="summary">You can now set up Wix Rentals services with fixed check-in and check-out times for overnight stays, pricing tiers that vary the rate by rental length or dates, and additional fees such as a cleaning fee. These settings are configured on...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">22 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new feature: test orders in ecommerce (version 1.0.2695) wix ecommerce now supports test orders, which go through the regular order lifecycle with a test payment, so no money moves. use the new testmode property in the checkout settings api to set who places test orders, and the new demo... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-solutions/e-commerce/orders/orders/test-orders" target="_blank" rel="noopener noreferrer">New feature: Test orders in eCommerce (Version 1.0.2695)</a>
+          <p class="summary">Wix eCommerce now supports test orders, which go through the regular order lifecycle with a test payment, so no money moves. Use the new testMode property in the Checkout Settings API to set who places test orders, and the new demo...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">22 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new method: bulk create data item drafts in data items v2 api (version 1.0.544) the data items v2 api now includes a bulk create data item drafts method. use it to create draft copies of multiple published data items in a single request. wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-solutions/cms/data-items/bulk-create-data-item-drafts" target="_blank" rel="noopener noreferrer">New method: Bulk Create Data Item Drafts in Data Items V2 API (Version 1.0.544)</a>
+          <p class="summary">The Data Items V2 API now includes a Bulk Create Data Item Drafts method. Use it to create draft copies of multiple published data items in a single request.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">13 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new method: business email google subscription v1 api (version 1.0.16) the business email google subscription v1 api now includes a list business email eligible domains method. use it to retrieve the account&#x27;s domains where it can purchase business email, with any restriction on each domain. wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/account-level/premium/business-email/google-subscription-v1/list-business-email-eligible-domains" target="_blank" rel="noopener noreferrer">New method: Business Email Google Subscription V1 API (Version 1.0.16)</a>
+          <p class="summary">The Business Email Google Subscription V1 API now includes a List Business Email Eligible Domains method. Use it to retrieve the account&#x27;s domains where it can purchase Business Email, with any restriction on each domain.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">16 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new method: content collector get intake form submission v1 api (version 1.0.25) the intake form v1 api now includes a get intake form submission method. use it to retrieve a client&#x27;s answers, uploaded files, and notes for an intake form. wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/account-level/studio-workspace/content-collector/intake-form-v1/get-intake-form-submission" target="_blank" rel="noopener noreferrer">New method: Content Collector Get Intake Form Submission V1 API (Version 1.0.25)</a>
+          <p class="summary">The Intake Form V1 API now includes a Get Intake Form Submission method. Use it to retrieve a client&#x27;s answers, uploaded files, and notes for an intake form.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">16 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new release: ai site chat assistant inbox channels settings v1 api (version 1.0.4) the assistant inbox channels settings api lets you control when the ai assistant responds to customers on a business&#x27;s messaging channels, such as whatsapp and instagram. you can turn the assistant on or off for each channel, limit it to... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-management/ai-site-chat/assistant-inbox-channels-settings-v1/introduction" target="_blank" rel="noopener noreferrer">New release: AI Site Chat Assistant Inbox Channels Settings V1 API (Version 1.0.4)</a>
+          <p class="summary">The Assistant Inbox Channels Settings API lets you control when the AI assistant responds to customers on a business&#x27;s messaging channels, such as WhatsApp and Instagram. You can turn the assistant on or off for each channel, limit it to...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">17 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new release: bookings related products api (version 1.0.1804) the bookings related products api lets you retrieve the wix stores products that a business links to its services. you can get the related products settings of up to 100 services and, optionally, product summaries with the details needed... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-solutions/bookings/services/related-products/introduction" target="_blank" rel="noopener noreferrer">New release: Bookings Related Products API (Version 1.0.1804)</a>
+          <p class="summary">The Bookings Related Products API lets you retrieve the Wix Stores products that a business links to its services. You can get the related products settings of up to 100 services and, optionally, product summaries with the details needed...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">19 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new release: dashboard sidebar category extension for cli apps and headless projects a dashboard sidebar category groups an app&#x27;s dashboard pages under a single entry in the dashboard sidebar. you can now add a dashboard sidebar category to cli apps and wix-managed headless projects . wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/overview/extensions-framework/dashboard-extensions/dashboard-sidebar-categories" target="_blank" rel="noopener noreferrer">New release: Dashboard sidebar category extension for CLI apps and headless projects</a>
+          <p class="summary">A dashboard sidebar category groups an app&#x27;s dashboard pages under a single entry in the dashboard sidebar. You can now add a dashboard sidebar category to CLI apps and Wix-managed headless projects .</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">19 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new release: members access groups api (version 1.0.4) the access groups api lets you retrieve the groups that control access to a site&#x27;s members-only resources, such as members-only pages. you can find the groups that grant access to a resource, and the groups that a logged-in site member... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/crm/members-contacts/members/access-groups/introduction" target="_blank" rel="noopener noreferrer">New release: Members Access Groups API (Version 1.0.4)</a>
+          <p class="summary">The Access Groups API lets you retrieve the groups that control access to a site&#x27;s members-only resources, such as members-only pages. You can find the groups that grant access to a resource, and the groups that a logged-in site member...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">18 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new release: paid ads eligibility v1 api (version 1.0.5) the eligibility api lets you check whether a site can advertise with wix, and which requirements the site still needs to meet. use it to show wix users what to fix before they start advertising on wix ad platforms, such as google ads and... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-management/marketing/ads/platform/eligibility-v1/introduction" target="_blank" rel="noopener noreferrer">New release: Paid Ads Eligibility V1 API (Version 1.0.5)</a>
+          <p class="summary">The Eligibility API lets you check whether a site can advertise with Wix, and which requirements the site still needs to meet. Use it to show Wix users what to fix before they start advertising on Wix ad platforms, such as Google Ads and...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">16 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new release: restaurants delivery order api (version 1.0.558) the restaurants delivery order api lets you send wix restaurants delivery orders to a 3rd-party delivery provider. use it to check which providers a restaurant can use and to schedule a courier pickup and drop-off for an order. wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-solutions/restaurants/online-orders/delivery-orders/introduction" target="_blank" rel="noopener noreferrer">New release: Restaurants Delivery Order API (Version 1.0.558)</a>
+          <p class="summary">The Restaurants Delivery Order API lets you send Wix Restaurants delivery orders to a 3rd-party delivery provider. Use it to check which providers a restaurant can use and to schedule a courier pickup and drop-off for an order.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">26 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new release: restaurants recommendation settings and recommendations apis (version 1.0.556) the restaurants recommendations apis let you suggest additional menu items to customers while they order online: recommendation settings : turn recommendations on or off for each operation, and choose the strategy that selects the... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-solutions/restaurants/online-orders/recommendations/introduction" target="_blank" rel="noopener noreferrer">New release: Restaurants Recommendation Settings and Recommendations APIs (Version 1.0.556)</a>
+          <p class="summary">The Restaurants Recommendations APIs let you suggest additional menu items to customers while they order online: Recommendation Settings : Turn recommendations on or off for each operation, and choose the strategy that selects the...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">25 Nov</td>
+      </tr>
+      <tr data-section="wix" data-haystack="new release: ecommerce settings api (version 1.0.2690) the ecommerce settings api lets you retrieve a read-only snapshot of a site&#x27;s ecommerce setup in a single call. you can get the site&#x27;s business locale, business information, checkout settings, delivery destinations, tax configuration... wix developer changelog">
+        <td class="topic">
+          <a class="title" href="https://dev.wix.com/docs/api-reference/business-solutions/e-commerce/settings/ecommerce-settings/introduction" target="_blank" rel="noopener noreferrer">New release: eCommerce Settings API (Version 1.0.2690)</a>
+          <p class="summary">The eCommerce Settings API lets you retrieve a read-only snapshot of a site&#x27;s eCommerce setup in a single call. You can get the site&#x27;s business locale, business information, checkout settings, delivery destinations, tax configuration...</p>
+        </td>
+        <td class="meta">
+          <span class="source">Wix Developer Changelog</span>
+          <span class="section-tag">Wix</span>
+        </td>
+        <td class="date">19 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="glm-5.4: toward generalized coding with our first loop transformer z.ai released glm-5.4, its first looped-transformer model, which reuses layers within a forward pass and is aimed at general coding tasks. simon willison">
+        <td class="topic">
+          <a class="title" href="https://simonwillison.net/2026/Nov/23/glm-54/" target="_blank" rel="noopener noreferrer">GLM-5.4: Toward Generalized Coding with Our First Loop Transformer</a>
+          <p class="summary">Z.ai released GLM-5.4, its first looped-transformer model, which reuses layers within a forward pass and is aimed at general coding tasks.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Simon Willison</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">24 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="introducing file slicing controls in the gemini api the gemini api now has file slicing controls, so you can send only selected parts of a file to the model instead of the whole thing. google developers">
+        <td class="topic">
+          <a class="title" href="https://blog.google/innovation-and-ai/technology/developers-tools/file-slicing-controls/" target="_blank" rel="noopener noreferrer">Introducing file slicing controls in the Gemini API</a>
+          <p class="summary">The Gemini API now has file slicing controls, so you can send only selected parts of a file to the model instead of the whole thing.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Google Developers</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">23 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="openai cuts gpt-6.2 usage: astra hits limits 40% faster, sol 25% faster openai reduced gpt-6.2 usage allowances, so astra now reaches its limits 40 percent faster and sol 25 percent faster, which affects anyone planning work around those quotas. hacker news">
+        <td class="topic">
+          <a class="title" href="https://twitter.com/thsottiaux/status/2125784147889393806" target="_blank" rel="noopener noreferrer">OpenAI cuts GPT-6.2 usage: Astra hits limits 40% faster, Sol 25% faster</a>
+          <p class="summary">OpenAI reduced GPT-6.2 usage allowances, so Astra now reaches its limits 40 percent faster and Sol 25 percent faster, which affects anyone planning work around those quotas.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Hacker News</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">26 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="openai says heavy chatgpt users may hit limits sooner as it merges chat and work openai is moving chatgpt to a single usage meter as chat and work merge, so heavy users may hit limits sooner than before. techcrunch ai">
+        <td class="topic">
+          <a class="title" href="https://techcrunch.com/2026/11/25/openai-says-heavy-chatgpt-users-may-hit-limits-sooner-as-it-merges-chat-and-work/" target="_blank" rel="noopener noreferrer">OpenAI says heavy ChatGPT users may hit limits sooner as it merges Chat and Work</a>
+          <p class="summary">OpenAI is moving ChatGPT to a single usage meter as Chat and Work merge, so heavy users may hit limits sooner than before.</p>
+        </td>
+        <td class="meta">
+          <span class="source">TechCrunch AI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">26 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="introducing the amazon bedrock trusted access api, with enterprise frontier safeguards and enterprise data controls for claude models amazon bedrock added a trusted access api, in public preview, for requesting and enrolling in provider programs, starting with anthropic&#x27;s enterprise frontier safeguards and enterprise data controls for claude. aws machine learning">
+        <td class="topic">
+          <a class="title" href="https://aws.amazon.com/blogs/machine-learning/introducing-the-amazon-bedrock-trusted-access-api-with-anthropics-enterprise-frontier-safeguards-and-enterprise-data-controls/" target="_blank" rel="noopener noreferrer">Introducing the Amazon Bedrock Trusted Access API, with Enterprise Frontier Safeguards and Enterprise Data Controls for Claude models</a>
+          <p class="summary">Amazon Bedrock added a trusted access API, in public preview, for requesting and enrolling in provider programs, starting with Anthropic&#x27;s Enterprise Frontier Safeguards and Enterprise Data Controls for Claude.</p>
+        </td>
+        <td class="meta">
+          <span class="source">AWS Machine Learning</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">24 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="building on nemotron 3.5 parse: open data, fine-tuning, and faster inference nemotron 3.5 parse now has open data, fine-tuning recipes and faster inference, which helps if you build document parsing pipelines. hugging face">
+        <td class="topic">
+          <a class="title" href="https://huggingface.co/blog/nvidia/building-on-nemotron-35-parse-open-data-fine-tunin" target="_blank" rel="noopener noreferrer">Building on Nemotron 3.5 Parse: Open Data, Fine-Tuning, and Faster Inference</a>
+          <p class="summary">Nemotron 3.5 Parse now has open data, fine-tuning recipes and faster inference, which helps if you build document parsing pipelines.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Hugging Face</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">26 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="introducing the llama.cpp benchmark dashboard for amd ryzen and radeon a new llama.cpp benchmark dashboard shows performance on amd ryzen and radeon hardware, useful for choosing local inference setups. hugging face">
+        <td class="topic">
+          <a class="title" href="https://huggingface.co/blog/ggml-org/llamacpp-amd-bench" target="_blank" rel="noopener noreferrer">Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon</a>
+          <p class="summary">A new llama.cpp benchmark dashboard shows performance on AMD Ryzen and Radeon hardware, useful for choosing local inference setups.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Hugging Face</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">26 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="how ifood scales coding agents across 15,000 repositories ifood described how it runs coding agents across 15,000 repositories, including the rollout approach that made that scale workable. openai">
+        <td class="topic">
+          <a class="title" href="https://openai.com/business/customer-stories/ifood" target="_blank" rel="noopener noreferrer">How iFood scales coding agents across 15,000 repositories</a>
+          <p class="summary">iFood described how it runs coding agents across 15,000 repositories, including the rollout approach that made that scale workable.</p>
+        </td>
+        <td class="meta">
+          <span class="source">OpenAI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">24 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="an indic voice agent with cuga a walkthrough of building an indic-language voice agent with the cuga agent framework. hugging face">
+        <td class="topic">
+          <a class="title" href="https://huggingface.co/blog/ibm-research/an-indic-voice-agent-with-cuga" target="_blank" rel="noopener noreferrer">An Indic Voice Agent with CUGA</a>
+          <p class="summary">A walkthrough of building an Indic-language voice agent with the CUGA agent framework.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Hugging Face</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">25 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="swarms, flocks, gangs: how to build, train, and evaluate multi-agent systems a guide to building, training and evaluating multi-agent systems, covering swarm-style and other coordination patterns. hugging face">
+        <td class="topic">
+          <a class="title" href="https://huggingface.co/blog/training-swarms" target="_blank" rel="noopener noreferrer">Swarms, Flocks, Gangs: How to build, train, and evaluate multi-agent systems</a>
+          <p class="summary">A guide to building, training and evaluating multi-agent systems, covering swarm-style and other coordination patterns.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Hugging Face</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">26 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="even the best ai agents struggle with everyday life a new benchmark finds that even the strongest ai agents often fail to complete everyday tasks reliably and safely, which is worth knowing before you hand real work to a personal assistant agent. techcrunch ai">
+        <td class="topic">
+          <a class="title" href="https://techcrunch.com/2026/11/24/even-the-best-ai-agents-struggle-with-everyday-life/" target="_blank" rel="noopener noreferrer">Even the best AI agents struggle with everyday life</a>
+          <p class="summary">A new benchmark finds that even the strongest AI agents often fail to complete everyday tasks reliably and safely, which is worth knowing before you hand real work to a personal assistant agent.</p>
+        </td>
+        <td class="meta">
+          <span class="source">TechCrunch AI</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">25 Nov</td>
+      </tr>
+      <tr data-section="ai" data-haystack="three llm inflection points in twelve months a conference talk write-up identifies three inflection points in llm and coding-agent ability over the past twelve months, giving context for how to use agents in your workflow. simon willison">
+        <td class="topic">
+          <a class="title" href="https://simonwillison.net/2026/Nov/24/llm-inflection-points/" target="_blank" rel="noopener noreferrer">Three LLM inflection points in twelve months</a>
+          <p class="summary">A conference talk write-up identifies three inflection points in LLM and coding-agent ability over the past twelve months, giving context for how to use agents in your workflow.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Simon Willison</span>
+          <span class="section-tag">AI &amp; Models</span>
+        </td>
+        <td class="date">25 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="visual studio code 1.148 visual studio code 1.148 is out with the month&#x27;s editor and agent-workflow updates, so check the release notes for changes that affect your setup. vs code">
+        <td class="topic">
+          <a class="title" href="https://code.visualstudio.com/updates/v1_148" target="_blank" rel="noopener noreferrer">Visual Studio Code 1.148</a>
+          <p class="summary">Visual Studio Code 1.148 is out with the month&#x27;s editor and agent-workflow updates, so check the release notes for changes that affect your setup.</p>
+        </td>
+        <td class="meta">
+          <span class="source">VS Code</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">25 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="introducing search for agents cloudflare added a one-toggle option that indexes a site&#x27;s content and exposes a search api with native http query support, so ai agents can search the site directly. cloudflare">
+        <td class="topic">
+          <a class="title" href="https://blog.cloudflare.com/search-for-agents/" target="_blank" rel="noopener noreferrer">Introducing Search for Agents</a>
+          <p class="summary">Cloudflare added a one-toggle option that indexes a site&#x27;s content and exposes a search API with native HTTP QUERY support, so AI agents can search the site directly.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Cloudflare</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">25 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="how to choose the next safe step in application modernization github published a method for assessing a legacy application and picking one bounded modernization step, packaged as a reusable github copilot agent skill. github">
+        <td class="topic">
+          <a class="title" href="https://github.blog/ai-and-ml/github-copilot/how-to-choose-the-next-safe-step-in-application-modernization/" target="_blank" rel="noopener noreferrer">How to choose the next safe step in application modernization</a>
+          <p class="summary">GitHub published a method for assessing a legacy application and picking one bounded modernization step, packaged as a reusable GitHub Copilot agent skill.</p>
+        </td>
+        <td class="meta">
+          <span class="source">GitHub</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">25 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="build a cli for ai agents – why your web app needs one a guide to building a cli for your web app so ai agents can drive it, covering generating the cli from your api, markdown docs from cobra, and oauth device authorization. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://spin.atomicobject.com/you-should-write-a-cli-for-your-web-app" target="_blank" rel="noopener noreferrer">Build a CLI for AI Agents – Why Your Web App Needs One</a>
+          <p class="summary">A guide to building a CLI for your web app so AI agents can drive it, covering generating the CLI from your API, Markdown docs from Cobra, and OAuth device authorization.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">26 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="minipg: postgresql as a single executable minipg packages postgresql as a single executable, which makes it easy to spin up a real postgres for local development and tests. hacker news">
+        <td class="topic">
+          <a class="title" href="https://progrium.github.io/minipg/" target="_blank" rel="noopener noreferrer">Minipg: PostgreSQL as a Single Executable</a>
+          <p class="summary">Minipg packages PostgreSQL as a single executable, which makes it easy to spin up a real Postgres for local development and tests.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Hacker News</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">26 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="sqlite3_rsync: database remote-copy tool for sqlite the sqlite3rsync tool, added to sqlite in 3.47.0 and extended in 3.50.0, copies a sqlite database to a remote machine efficiently, and it is worth a look for backup and sync jobs. simon willison">
+        <td class="topic">
+          <a class="title" href="https://simonwillison.net/2026/Nov/26/sqlite3-rsync/" target="_blank" rel="noopener noreferrer">sqlite3_rsync: Database Remote-Copy Tool For SQLite</a>
+          <p class="summary">The sqlite3rsync tool, added to SQLite in 3.47.0 and extended in 3.50.0, copies a SQLite database to a remote machine efficiently, and it is worth a look for backup and sync jobs.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Simon Willison</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">26 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="rethinking read replicas for the lakebase architecture lakebase postgres read replicas attach as extra compute to the primary&#x27;s existing storage, so they start in seconds, add no storage and scale to zero, unlike full-clone replicas on rds. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://www.databricks.com/blog/rethinking-read-replicas-lakebase-architecture" target="_blank" rel="noopener noreferrer">Rethinking read replicas for the lakebase architecture</a>
+          <p class="summary">Lakebase Postgres read replicas attach as extra compute to the primary&#x27;s existing storage, so they start in seconds, add no storage and scale to zero, unlike full-clone replicas on RDS.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">26 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="datasette-charts 0.3a0 datasette-charts 0.3a0 adds chart annotations, so you can overlay lines, shaded areas and labels on rendered charts. simon willison">
+        <td class="topic">
+          <a class="title" href="https://simonwillison.net/2026/Nov/25/datasette-charts/" target="_blank" rel="noopener noreferrer">datasette-charts 0.3a0</a>
+          <p class="summary">datasette-charts 0.3a0 adds chart annotations, so you can overlay lines, shaded areas and labels on rendered charts.</p>
+        </td>
+        <td class="meta">
+          <span class="source">Simon Willison</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">25 Nov</td>
+      </tr>
+      <tr data-section="dev" data-haystack="4 docker containers i&#x27;ve never once had to fix, and they&#x27;re the ones i&#x27;d tell any beginner to start with four low-maintenance self-hosted docker containers, including omnitools and bentopdf, which process files client-side and run on very small hardware. daily.dev">
+        <td class="topic">
+          <a class="title" href="https://www.xda-developers.com/docker-containers-i-never-once-had-to-fix" target="_blank" rel="noopener noreferrer">4 Docker containers I&#x27;ve never once had to fix, and they&#x27;re the ones I&#x27;d tell any beginner to start with</a>
+          <p class="summary">Four low-maintenance self-hosted Docker containers, including OmniTools and BentoPDF, which process files client-side and run on very small hardware.</p>
+        </td>
+        <td class="meta">
+          <span class="source">daily.dev</span>
+          <span class="section-tag">Dev Tools</span>
+        </td>
+        <td class="date">26 Nov</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="empty" id="empty">No updates match that filter.</div>
+  </div>
+
+  <footer>
+    <span>43 updates</span>
+    <span>Covering updates since 21 Nov, 20:02 IST</span>
+    <span>Every title links to its original source</span>
+  </footer>
+</div>
+<script>
+(function () {
+  var rows   = Array.prototype.slice.call(document.querySelectorAll('tbody tr'));
+  var chips  = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var search = document.getElementById('search');
+  var empty  = document.getElementById('empty');
+  var active = 'all';
+
+  function apply() {
+    var q = (search.value || '').trim().toLowerCase();
+    var shown = 0;
+    rows.forEach(function (row) {
+      var okSection = active === 'all' || row.dataset.section === active;
+      var okText = !q || row.dataset.haystack.indexOf(q) !== -1;
+      var show = okSection && okText;
+      row.hidden = !show;
+      if (show) shown++;
+    });
+    empty.classList.toggle('show', shown === 0);
+  }
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      active = chip.dataset.filter;
+      chips.forEach(function (c) {
+        c.setAttribute('aria-pressed', String(c === chip));
+      });
+      apply();
+    });
+  });
+
+  search.addEventListener('input', apply);
+})();
+</script>
+</body>
+</html>
